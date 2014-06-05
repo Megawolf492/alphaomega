@@ -1,0 +1,7 @@
+<%= link_to currentUser.name, currentUser%>
+<ul>
+	<li><%= link_to "Account", user_path(currentUser)%></li>
+	<li><%= link_to "Settings", edit_user_path(currentUser)%></li>
+	<br/>
+	<li style="width: 70px;"><%= link_to "Sign Out", signout_path, method: :post, data: {remote: true}%></li>
+</ul>

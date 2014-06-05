@@ -1,0 +1,11 @@
+<% provide(:title, "Topics") %>
+
+<h2>All Topics</h2>
+
+<% if adminSignedIn? %>
+	<p><%= link_to "Create New Topic", new_topic_path %></p>
+<% end %>
+
+<% @topics.each do |topic| %>
+	<p><%= link_to topic.name, topic%></p>
+<% end %>

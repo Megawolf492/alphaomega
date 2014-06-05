@@ -1,0 +1,12 @@
+<% provide(:title, "Edit User") %>
+
+<h1>Edit <%= @user.name %>'s Profile</h1>
+<%= form_for(@user) do |f| %>
+
+	<%= render 'shared/form', f: f %>
+
+	<p><%= f.submit "Update Account" %></p>
+
+<% end %>
+
+	

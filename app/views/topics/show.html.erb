@@ -1,0 +1,21 @@
+<% provide(:title, @topic.name) %>
+<p><%= @topic.name %></p>
+<p><%= @topic.description %></p>
+
+<%= render 'showVideos' %>
+
+
+
+<% if !@worksheets.empty? %>
+	<h5><%= "Worksheet".pluralize(@worksheets.count) %></h5>
+<% end %>
+
+<% @worksheets.each do |worksheet| %>
+	<p><%= link_to worksheet.name, worksheet, target: "_blank" %></p>
+<% end %>
+
+<%= render 'showQuizzes' %>
+
+<% if adminSignedIn?%>
+	<br/><p><%= link_to "Edit Topic", edit_topic_path %></p>
+<% end %>

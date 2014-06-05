@@ -1,0 +1,9 @@
+<% provide(:title, 'Sign Up Admin')%>
+<h1>Sign Up Admin</h1>
+<%= form_for(@admin) do |f| %>
+	
+	<%= render 'shared/form', f: f %>
+
+	<p><%= f.submit "Create Admin" %></p>
+
+<% end %>

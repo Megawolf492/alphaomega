@@ -1,0 +1,5 @@
+<% provide(:title, "All Users") %>
+
+<% @users.each do |user| %>
+	<p><%= gravatar(user, size: 25)%><%= link_to user.name, user %></p>
+<% end %>

@@ -1,0 +1,11 @@
+<% provide(:title, "Edit Topic") %>
+
+<%= nested_form_for @topic, html:{multipart: true} do |f| %>
+	
+	<%= render 'editQuiz', f: f %>
+
+	<%= f.submit "Edit Topic"%>
+<% end %>
+
+<p><%= link_to "Delete Topic", @topic, method: :delete, 
+				data: {confirm: "Are you sure?"} %></p>

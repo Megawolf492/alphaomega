@@ -1,0 +1,7 @@
+<%= link_to currentAdmin.name, currentAdmin%>
+<ul>
+	<li><%= link_to "Account", admin_path(currentAdmin)%></li>
+	<li><%= link_to "Settings", edit_admin_path(currentAdmin)%></li>
+	
+	<li style="width: 70px"><%= link_to "Sign Out", signout_path, method: :post, data: {remote: true}%></li>
+</ul>

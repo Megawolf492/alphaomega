@@ -1,0 +1,40 @@
+<dl>
+	<%= f.fields_for :questions, type, html:{multipart: true} do |qBuilder| %>
+		<dt><p><%=  qBuilder.text_area :text %>
+			<%= qBuilder.label "Value" %>
+			<%= qBuilder.text_field :maxValue, size: 1 %>
+			<span class= "question">
+				<%= qBuilder.hidden_field :difficulty%>
+			</span>
+			<%= qBuilder.link_to_remove "Remove Question", data: {confirm: "Are you sure?"} %>
+		</p></dt>
+
+		
+
+
+
+
+		<dd>
+		<%= qBuilder.fields_for :answers, html:{multipart: true} do |aBuilder| %>
+			<p>
+				<div class="answer">
+					<%=  aBuilder.text_field :text %>
+					<%= aBuilder.label "Value" %>
+					<%= aBuilder.text_field :value, size: 1 %>
+					<%= aBuilder.link_to_remove "Remove Answer" %>
+				</div>
+			</p>
+
+			
+			
+		<% end %>
+		<p><%= qBuilder.link_to_add "Add Answer", :answers %></p></dd>
+		<br/>
+
+
+
+
+	<% end %>
+	<p><%= f.link_to_add "Add Question", :questions %></p>
+</dl>
+<br/>

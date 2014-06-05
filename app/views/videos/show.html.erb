@@ -1,0 +1,12 @@
+<% provide(:title, @video.name) %>
+<p><%= @video.name %></p>
+<p><%= @video.filename %></p>
+
+   	<% if userSignedIn? && @viewed%>
+		<p>You have already viewed this video</p>
+   	<% end %>
+
+
+<%= video_tag "/topics/#{@video.topic.id}/videos/" + @video.filename, :controls => true %>
+
+<p><%= link_to "Return to Topic", @topic %></p>

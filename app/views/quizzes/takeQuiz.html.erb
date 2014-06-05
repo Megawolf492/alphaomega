@@ -1,0 +1,15 @@
+<% provide(:title, @quiz.name) %>
+
+<%= form_tag grade_quiz_path do %>
+	<%= hidden_field_tag "difficulty", @difficulty %>
+	<% @questions.each do |question| %>
+		<%= hidden_field_tag ("id" + @counter.to_s), question.id %>
+		<p><%= question.text %></p>
+		<% question.answers.each do |answer| %>
+			<p><%= label_tag answer.text %> <%= radio_button_tag("guess" + @counter.to_s, answer.text)%></p>
+		<% end %>
+		<% @counter += 1 %>
+		<br/>
+	<% end %>
+	<%= submit_tag "Finish" %>
+<% end %>

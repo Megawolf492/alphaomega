@@ -1,0 +1,15 @@
+<% if !@quizzes.empty? %>
+	<h5><%= "Quiz".pluralize(@quizzes.count) %></h5>
+<% end %>
+
+<% @quizzes.each do |quiz| %>
+	<% if adminSignedIn? %>
+		<p><%= link_to quiz.name, quiz %></p>
+	<% else %>
+		<ul><%= quiz.name %>
+			<li><%= render 'showGrades', diff: "easy", quiz: quiz, text: "Easy"%></li>
+			<li><%= render 'showGrades', diff: "med", quiz: quiz, text: "Medium"%></li>
+			<li><%= render 'showGrades', diff: "hard", quiz: quiz, text: "Hard"%></li>
+		</ul>
+	<% end %>
+<% end %>

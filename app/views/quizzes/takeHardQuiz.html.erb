@@ -1,0 +1,13 @@
+<% provide(:title, @quiz.name) %>
+
+<%= form_tag grade_quiz_path do %>
+	<%= hidden_field_tag "difficulty", @difficulty %>
+	<% @questions.each do |question| %>
+		<%= hidden_field_tag ("id" + @counter.to_s), question.id %>
+		<p><%= question.text %></p>
+		<p><%= text_field_tag(("guess" + @counter.to_s), nil, autocomplete: :off)%></p>
+		<% @counter += 1 %>
+		<br/>
+	<% end %>
+	<%= submit_tag "Finish" %>
+<% end %>

@@ -1,0 +1,14 @@
+-----username/password 
+	-----keep track of watched videos
+	-----keep track of quiz scores
+-----tutoring videos
+-----worksheets/learning material
+-----pdf in browser
+-----about page
+-----online tutoring links
+-----no interaction
+up to user to see how public he wants to be
+-----picture avatar
+-----no restrictions on videos
+
+Admin.create(name: "Ryan K", email: "ryank@mail.com", password: "ryanryan", password_confirmation: "ryanryan")

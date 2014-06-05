@@ -1,0 +1,14 @@
+<% provide(:title, 'User Page') %>
+<h3>This is the user show page</h3>
+<p><%= gravatar @user%><%= @user.name %></p>
+<p><%= @user.email %></p>
+
+<h4>All Topics</h4>
+<p>You have watched <%= @percentage %>% (<%= @numViews %> of <%= @numVideos %>) of the videos.</p>
+
+
+<% if currentUser == @user || adminSignedIn?%>
+	<p><%= link_to "Edit Account", edit_user_path%></p>
+	<p><%= link_to "Delete Account", @user, method: :delete, 
+				data: {confirm: "Are you sure?"} %></p>
+<% end %>

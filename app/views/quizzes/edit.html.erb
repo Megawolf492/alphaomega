@@ -1,0 +1,33 @@
+<% provide(:title, "Edit Quiz") %>
+
+<%= nested_form_for @quiz, html:{multipart: true} do |f| %>
+	<%= render 'shared/errors', object: f.object%>
+
+	<p><%= f.label :name%>
+	<%= f.text_field :name%></p>
+
+
+	<h5>Easy Questions</h5>
+
+	<div class="all" difficulty="easy">
+		<%= render 'form', f: f, type: @easy %>
+	</div>
+
+	<h5>Medium Questions</h5>
+
+	<div class="all" difficulty="med">
+		<%= render 'form', f: f, type: @med %>
+	</div>
+
+	<h5>Hard Questions</h5>
+
+	<div class="all" difficulty="hard">
+		<%= render 'form', f: f, type: @hard %>
+	</div>
+
+
+	<%= f.submit "Edit Quiz"%>
+<% end %>
+
+<p><%= link_to "Delete Quiz", @quiz, method: :delete, 
+				data: {confirm: "Are you sure?"} %></p>
