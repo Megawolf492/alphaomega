@@ -2,7 +2,7 @@
 
 <%= nested_form_for @topic, html:{multipart: true} do |f| %>
 	
-	<%= render 'form', f: f %>
+	<%= render 'editTopic', f: f %>
 
 	<%= f.submit "Create Topic"%>
 <% end %>
