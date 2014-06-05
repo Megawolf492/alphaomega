@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 		@medAverage = 0
 		@hardAverage = 0
 		@numQuiz = 0
+=begin
 		@quizzes.each do |quiz|
 			grades = quiz.grades.where(user_id: params[:id])
 			if !grades.find(difficulty: "easy").nil?
@@ -30,9 +31,11 @@ class UsersController < ApplicationController
 			end
 			@numQuiz += 1
 		end
+
 		@easyAverage /= @numQuiz
 		@medAverage /= @numQuiz
 		@hardAverage /= @numQuiz
+=end
 	end
 
 	def new
