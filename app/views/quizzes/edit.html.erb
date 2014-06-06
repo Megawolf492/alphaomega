@@ -1,4 +1,7 @@
 <% provide(:title, "Edit Quiz") %>
+<% content_for :pageBar do %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @topic.name, topic_path(@topic) %> > <%= link_to @quiz.name, quiz_path(@quiz) %> > <%= link_to "Edit", edit_quiz_path(@quiz) %>
+<% end %>
 
 <%= nested_form_for @quiz, html:{multipart: true} do |f| %>
 	<%= render 'shared/errors', object: f.object%>

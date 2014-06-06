@@ -1,4 +1,7 @@
 <% provide(:title, @topic.name) %>
+<% content_for :pageBar do %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @topic.name, topic_path(@topic) %>
+<% end %>
 <p><%= @topic.name %></p>
 <p><%= @topic.description %></p>
 

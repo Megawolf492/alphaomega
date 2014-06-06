@@ -1,4 +1,7 @@
 <% provide(:title, @video.name) %>
+<% content_for :pageBar do %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @topic.name, topic_path(@topic) %> > <%= link_to @video.name, video_path(@video) %>
+<% end %>
 <p><%= @video.name %></p>
 <p><%= @video.filename %></p>
 

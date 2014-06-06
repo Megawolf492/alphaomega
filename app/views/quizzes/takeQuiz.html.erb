@@ -1,4 +1,7 @@
 <% provide(:title, @quiz.name) %>
+<% content_for :pageBar do %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @topic.name, topic_path(@topic) %> > <%= link_to @quiz.name, quiz_path(@quiz) %>
+<% end %>
 
 <%= form_tag grade_quiz_path do %>
 	<%= hidden_field_tag "difficulty", @difficulty %>

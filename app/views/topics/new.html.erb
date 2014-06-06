@@ -1,4 +1,7 @@
 <% provide(:title, "Create Topic") %>
+<% content_for :pageBar do %>
+	<%= link_to "Topics", topics_path %> > <%= link_to "Create Topic", new_topic_path %>
+<% end %>
 
 <%= nested_form_for @topic, html:{multipart: true} do |f| %>
 	

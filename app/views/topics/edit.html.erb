@@ -1,4 +1,7 @@
 <% provide(:title, "Edit Topic") %>
+<% content_for :pageBar do %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @topic.name, topic_path(@topic) %> > <%= link_to "Edit", edit_topic_path(@topic) %>
+<% end %>
 
 <%= nested_form_for @topic, html:{multipart: true} do |f| %>
 	

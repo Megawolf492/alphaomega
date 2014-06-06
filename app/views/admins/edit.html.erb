@@ -1,4 +1,7 @@
 <% provide(:title, "Edit Admin") %>
+<% content_for :pageBar do %>
+	<%= link_to "Admins", admins_path %> > <%= link_to @admin.name, admin_path(@admin) %> > <%= link_to "Edit", edit_admin_path(@admin) %>
+<% end %>
 
 <h1>Edit <%= @admin.name %>'s Profile</h1>
 <%= form_for(@admin) do |f| %>

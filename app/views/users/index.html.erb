@@ -1,4 +1,7 @@
 <% provide(:title, "All Users") %>
+<% content_for :pageBar do %>
+	<%= link_to "Users", users_path %>
+<% end %>
 
 <% @users.each do |user| %>
 	<p><%= gravatar(user, size: 25)%><%= link_to user.name, user %></p>

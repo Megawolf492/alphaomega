@@ -7,4 +7,13 @@ module ApplicationHelper
 			"#{baseTitle} | #{pageTitle}"
 		end
 	end
+
+	def fullPageBar(pageBar)
+		baseBar = link_to "Home", root_path
+		if pageBar.empty?
+			baseBar
+		else
+			baseBar + " >" + pageBar
+		end
+	end
 end

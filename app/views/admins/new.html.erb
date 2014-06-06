@@ -1,4 +1,7 @@
 <% provide(:title, 'Sign Up Admin')%>
+<% content_for :pageBar do %>
+	<%= link_to "Admins", admins_path %> > <%= link_to "Create Admin", new_admin_path %>
+<% end %>
 <h1>Sign Up Admin</h1>
 <%= form_for(@admin) do |f| %>
 	

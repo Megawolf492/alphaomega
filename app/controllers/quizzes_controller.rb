@@ -36,6 +36,7 @@ class QuizzesController < ApplicationController
 
 	def show
 		@quiz = Quiz.find(params[:id])
+		@topic = @quiz.topic
 		if adminSignedIn?
 			@easy = @quiz.questions.where(difficulty: "easy")
 			@med = @quiz.questions.where(difficulty: "med")
@@ -56,6 +57,7 @@ class QuizzesController < ApplicationController
 
 	def edit
 		@quiz = Quiz.find(params[:id])
+		@topic = @quiz.topic
 		@easy = @quiz.questions.where(difficulty: "easy")
 		@med = @quiz.questions.where(difficulty: "med")
 		@hard = @quiz.questions.where(difficulty: "hard")
