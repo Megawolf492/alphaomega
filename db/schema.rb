@@ -14,8 +14,12 @@
 ActiveRecord::Schema.define(version: 20140602205038) do
 
   create_table "admins", force: true do |t|
-    t.string   "name"
+    t.string   "firstName"
+    t.string   "lastName"
     t.string   "email"
+    t.integer  "age"
+    t.date     "dob"
+    t.binary   "gender"
     t.string   "password_digest"
     t.string   "remember_token"
     t.datetime "created_at"
@@ -69,8 +73,12 @@ ActiveRecord::Schema.define(version: 20140602205038) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
+    t.string   "firstName"
+    t.string   "lastName"
     t.string   "email"
+    t.integer  "age"
+    t.date     "dob"
+    t.binary   "gender"
     t.string   "password_digest"
     t.string   "remember_token"
     t.datetime "created_at"
