@@ -1,9 +1,9 @@
 <% provide(:title, "Edit User") %>
 <% content_for :pageBar do %>
-	<%= link_to "Users", users_path %> > <%= link_to @user.name, user_path(@user) %> > <%= link_to "Edit", edit_user_path(@user) %>
+	<%= link_to "Users", users_path %> > <%= link_to @user.firstName, user_path(@user) %> > <%= link_to "Edit", edit_user_path(@user) %>
 <% end %>
 
-<h1>Edit <%= @user.name %>'s Profile</h1>
+<h1>Edit <%= @user.firstName %>'s Profile</h1>
 <%= form_for(@user) do |f| %>
 
 	<%= render 'shared/form', f: f %>

@@ -1,10 +1,10 @@
 <% provide(:title, 'User Page') %>
 <% content_for :pageBar do %>
-	<%= link_to "Users", users_path %> > <%= link_to @user.name, user_path(@user) %>
+	<%= link_to "Users", users_path %> > <%= link_to @user.firstName, user_path(@user) %>
 <% end %>
 
 <h3>This is the user show page</h3>
-<p><%= gravatar @user%><%= @user.name %></p>
+<p><%= gravatar @user%><%= @user.firstName %></p>
 <p><%= @user.email %></p>
 
 <h4>All Topics</h4>

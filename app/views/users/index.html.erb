@@ -4,5 +4,5 @@
 <% end %>
 
 <% @users.each do |user| %>
-	<p><%= gravatar(user, size: 25)%><%= link_to user.name, user %></p>
+	<p><%= gravatar(user, size: 25)%><%= link_to user.firstName, user %></p>
 <% end %>
