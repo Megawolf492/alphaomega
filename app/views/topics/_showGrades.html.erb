@@ -1,11 +1,11 @@
 <%= link_to "#{text}", quiz_path(difficulty: "#{diff}") %>
-<% if userSignedIn? %>
-	<% userGrades = quiz.grades.where(user_id: currentUser.id, difficulty: "#{diff}")%>
-	<% if !userGrades.first.nil?%>
+<% if studentSignedIn? %>
+	<% studentGrades = quiz.grades.where(student_id: currentStudent.id, difficulty: "#{diff}")%>
+	<% if !studentGrades.first.nil?%>
 		<ul>
-			<li>Best score: <%= userGrades.order(average: :desc).first.average %>%</li>
-			<li>Last score: <%= userGrades.order(created_at: :desc).first.average %>%</li>
-			<li>Average score: <%= userGrades.all.average(:average).round(2) %>%</li>
+			<li>Best score: <%= studentGrades.order(average: :desc).first.average %>%</li>
+			<li>Last score: <%= studentGrades.order(created_at: :desc).first.average %>%</li>
+			<li>Average score: <%= studentGrades.all.average(:average).round(2) %>%</li>
 		</ul>
 	<% end %>
 <% end %>

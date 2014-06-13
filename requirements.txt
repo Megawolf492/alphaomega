@@ -11,4 +11,29 @@ up to user to see how public he wants to be
 -----picture avatar
 -----no restrictions on videos
 
+-----refactor user to student
+student profile page
+	-----go to it after login
+	recently viewed videos and attempted quizzes & grades
+	tutors contacted & lessons done
+tutor profile page
+	go to it after login
+	how much to charge students
+	lessons completed
+admin profile page
+	-----go to it after login
+	top quizzes
+	any notifications of changes, tutor requests, etc.
+Links page
+	now navigation/site map
+	search bar (with autocomplete)
+-----Quizzes
+	-----only fill-in-the-blanks
+Tutoring sessions
+	prompted by students
+	confirmed by tutors
+Tutor profile
+	signup easily for free
+	hidden until approved by admin
+
 Admin.create(name: "Ryan K", email: "ryank@mail.com", password: "ryanryan", password_confirmation: "ryanryan")

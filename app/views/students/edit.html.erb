@@ -1,0 +1,15 @@
+<% provide(:title, "Edit Student") %>
+<% content_for :pageBar do %>
+	<%= link_to "Students", students_path %> > <%= link_to @student.firstName, student_path(@student) %> > <%= link_to "Edit", edit_student_path(@student) %>
+<% end %>
+
+<h1>Edit <%= @student.firstName %>'s Profile</h1>
+<%= form_for(@student) do |f| %>
+
+	<%= render 'shared/form', f: f %>
+
+	<p><%= f.submit "Update Account" %></p>
+
+<% end %>
+
+	

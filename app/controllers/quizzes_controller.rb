@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
 	include AdminsHelper
-	include UsersHelper
+	include StudentsHelper
 	before_action :adminSignedIn, except: [:show, :grade]
 
 	def grade
@@ -22,12 +22,11 @@ class QuizzesController < ApplicationController
 		fGrade = (aGrade / pGrade * 100).round(2)
 		flash[:success] = "Your grade is " + fGrade.to_s + "%"
 
-		if userSignedIn?
+		if studentSignedIn?
 			grade = Grade.new
 			grade.average = fGrade
-			grade.user_id = currentUser.id
+			grade.student_id = currentStudent.id
 			grade.quiz_id = params[:id]
-			grade.difficulty = params[:difficulty]
 			grade.save
 		end
 
@@ -38,29 +37,18 @@ class QuizzesController < ApplicationController
 		@quiz = Quiz.find(params[:id])
 		@topic = @quiz.topic
 		if adminSignedIn?
-			@easy = @quiz.questions.where(difficulty: "easy")
-			@med = @quiz.questions.where(difficulty: "med")
-			@hard = @quiz.questions.where(difficulty: "hard")
+			@questions = @quiz.questions
 			render 'show'
 		else
-			redirect_to topic_path(@quiz.topic_id) and return if params[:difficulty].blank?
-			@difficulty = params[:difficulty]
-			@questions = @quiz.questions.where(difficulty: @difficulty).limit(5).order("RANDOM()")
+			@questions = @quiz.questions.limit(5).order("RANDOM()")
 			@counter = 0
-			if @difficulty == "hard"
-				render 'takeHardQuiz'
-			else
-				render 'takeQuiz'
-			end
+			render 'takeQuiz'
 		end
 	end
 
 	def edit
 		@quiz = Quiz.find(params[:id])
 		@topic = @quiz.topic
-		@easy = @quiz.questions.where(difficulty: "easy")
-		@med = @quiz.questions.where(difficulty: "med")
-		@hard = @quiz.questions.where(difficulty: "hard")
 	end
 
 	def update
@@ -78,7 +66,7 @@ class QuizzesController < ApplicationController
 
 		def quizParams
 			params.require(:quiz).permit(:name, :topic_id,
-				questions_attributes: [:id, :text, :maxValue, :difficulty, :_destroy,
+				questions_attributes: [:id, :text, :maxValue, :_destroy,
 					answers_attributes: [:id, :text, :value, :_destroy]])
 		end
 end

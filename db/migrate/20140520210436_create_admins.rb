@@ -4,9 +4,9 @@ class CreateAdmins < ActiveRecord::Migration
 	    t.string :firstName
       t.string :lastName
       t.string :email
-      t.integer :age
       t.date :dob
       t.binary :gender #0 = male, 1 = female
+      t.text :biography
       t.integer :privacy
       t.string :password_digest
       t.string :remember_token

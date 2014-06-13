@@ -10,23 +10,9 @@
 	<%= f.text_field :name%></p>
 
 
-	<h5>Easy Questions</h5>
-
-	<div class="all" difficulty="easy">
-		<%= render 'form', f: f, type: @easy %>
-	</div>
-
-	<h5>Medium Questions</h5>
-
-	<div class="all" difficulty="med">
-		<%= render 'form', f: f, type: @med %>
-	</div>
-
-	<h5>Hard Questions</h5>
-
-	<div class="all" difficulty="hard">
-		<%= render 'form', f: f, type: @hard %>
-	</div>
+	<h5>Questions</h5>
+	<%= render 'form', f: f%>
+	
 
 
 	<%= f.submit "Edit Quiz"%>

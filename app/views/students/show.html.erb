@@ -1,0 +1,20 @@
+<% provide(:title, 'Student Page') %>
+<% content_for :pageBar do %>
+	<%= link_to "Students", students_path %> > <%= link_to @student.firstName, student_path(@student) %>
+<% end %>
+
+<h3>This is the student show page</h3>
+<p><%= gravatar @student%><%= @student.firstName %></p>
+<p><%= @student.email %></p>
+
+<h4>All Topics</h4>
+<p>You have watched <%= @percentage %>% (<%= @numViews %> of <%= @numVideos %>) of the videos.</p>
+<ul>Easy Quizzes
+	<li>
+
+
+<% if currentStudent == @student || adminSignedIn?%>
+	<p><%= link_to "Edit Account", edit_student_path%></p>
+	<p><%= link_to "Delete Account", @student, method: :delete, 
+				data: {confirm: "Are you sure?"} %></p>
+<% end %>

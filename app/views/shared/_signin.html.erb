@@ -1,7 +1,7 @@
 Sign In | <%= link_to "Register", signup_path %>
 <ul>
 	<li>
-		<%= form_for(:user, url: signin_path, remote: true) do |f| %>
+		<%= form_for(:student, url: signin_path) do |f| %>
 
 
 		<%= f.text_field :email, size: 10, value: "Email", onfocus: "this.value=''", autocomplete: :off%>

@@ -3,9 +3,6 @@
 		<dt><p><%=  qBuilder.text_area :text %>
 			<%= qBuilder.label "Value" %>
 			<%= qBuilder.text_field :maxValue, size: 1 %>
-			<span class= "question">
-				<%= qBuilder.hidden_field :difficulty%>
-			</span>
 			<%= qBuilder.link_to_remove "Remove Question", data: {confirm: "Are you sure?"} %>
 		</p></dt>
 

@@ -5,7 +5,7 @@
 <p><%= @video.name %></p>
 <p><%= @video.filename %></p>
 
-   	<% if userSignedIn? && @viewed%>
+   	<% if studentSignedIn? && @viewed%>
 		<p>You have already viewed this video</p>
    	<% end %>
 

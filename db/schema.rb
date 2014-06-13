@@ -41,18 +41,17 @@ ActiveRecord::Schema.define(version: 20140602205038) do
   create_table "grades", force: true do |t|
     t.float    "average"
     t.text     "difficulty"
-    t.integer  "user_id"
+    t.integer  "student_id"
     t.integer  "quiz_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "grades", ["quiz_id"], name: "index_grades_on_quiz_id"
-  add_index "grades", ["user_id"], name: "index_grades_on_user_id"
+  add_index "grades", ["student_id"], name: "index_grades_on_student_id"
 
   create_table "questions", force: true do |t|
     t.text     "text"
-    t.string   "difficulty"
     t.integer  "maxValue"
     t.integer  "quiz_id"
     t.datetime "created_at"
@@ -66,14 +65,7 @@ ActiveRecord::Schema.define(version: 20140602205038) do
     t.datetime "updated_at"
   end
 
-  create_table "topics", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
+  create_table "students", force: true do |t|
     t.string   "firstName"
     t.string   "lastName"
     t.string   "email"
@@ -87,8 +79,15 @@ ActiveRecord::Schema.define(version: 20140602205038) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "students", ["email"], name: "index_students_on_email", unique: true
+  add_index "students", ["remember_token"], name: "index_students_on_remember_token"
+
+  create_table "topics", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "videos", force: true do |t|
     t.string   "name"
@@ -99,14 +98,14 @@ ActiveRecord::Schema.define(version: 20140602205038) do
   end
 
   create_table "viewings", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "student_id"
     t.integer  "video_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "viewings", ["user_id", "video_id"], name: "index_viewings_on_user_id_and_video_id", unique: true
-  add_index "viewings", ["user_id"], name: "index_viewings_on_user_id"
+  add_index "viewings", ["student_id", "video_id"], name: "index_viewings_on_student_id_and_video_id", unique: true
+  add_index "viewings", ["student_id"], name: "index_viewings_on_student_id"
   add_index "viewings", ["video_id"], name: "index_viewings_on_video_id"
 
   create_table "worksheets", force: true do |t|

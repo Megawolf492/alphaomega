@@ -1,6 +1,6 @@
 class Viewing < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :student
 	belongs_to :video
-	validates :user_id, presence: true
+	validates :student_id, presence: true
 	validates :video_id, presence: true
 end
