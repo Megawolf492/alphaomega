@@ -1,0 +1,12 @@
+<% provide(:title, 'Sign Up')%>
+<% content_for :pageBar do %>
+	<%= link_to "Tutors", tutors_path %> > <%= link_to "Create Tutor", new_tutor_path %>
+<% end %>
+<h1>Sign Up</h1>
+<%= form_for(@tutor) do |f| %>
+
+	<%= render 'shared/form', f: f %>
+
+	<p><%= f.submit "Create Account" %></p>
+
+<% end %>

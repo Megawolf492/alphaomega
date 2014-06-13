@@ -1,0 +1,7 @@
+<%= link_to currentStudent.firstName, currentStudent%>
+<ul>
+	<li><%= link_to "Account", student_path(currentStudent)%></li>
+	<li><%= link_to "Settings", edit_student_path(currentStudent)%></li>
+	<br/>
+	<li style="width: 70px;"><%= link_to "Sign Out", signout_path, method: :post, data: {remote: true}%></li>
+</ul>

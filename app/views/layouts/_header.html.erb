@@ -2,16 +2,21 @@
 	<b><%= link_to "Alpha Omega Tutoring", root_path%></b>
 	<ul>
 		<li><%= link_to "Students", students_path%></li>
+		<li><%= link_to "Tutors", tutors_path%></li>
 		<li><%= link_to "Topics", topics_path%>
 		</li>
 		<li id="signin">
 			<% if studentSignedIn? %>
-				<%= render 'shared/signoutU' %>
+				<%= render 'shared/signoutS' %>
 			<% else %>
-				<% if adminSignedIn? %>
-					<%= render 'shared/signoutA' %>
+				<% if tutorSignedIn? %>
+					<%= render 'shared/signoutT' %>
 				<% else %>
-					<%= render 'shared/signin'%>
+					<% if adminSignedIn? %>
+						<%= render 'shared/signoutA' %>
+					<% else %>
+						<%= render 'shared/signin'%>
+					<% end %>
 				<% end %>
 			<% end %>
 		</li>

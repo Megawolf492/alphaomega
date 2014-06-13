@@ -13,29 +13,6 @@ class StudentsController < ApplicationController
 		@numViews = Viewing.where(student_id: @student.id).count
 		@percentage = (@numViews.to_f / @numVideos) * 100
 		@quizzes = Quiz.all
-		@easyAverage = 0
-		@medAverage = 0
-		@hardAverage = 0
-		@numQuiz = 0
-=begin
-		@quizzes.each do |quiz|
-			grades = quiz.grades.where(student_id: params[:id])
-			if !grades.find(difficulty: "easy").nil?
-				@easyAverage += grades.where(difficulty: "easy").order(average: :desc).first.average
-			end
-			if !grades.find(difficulty: "med").nil?
-				@medAverage += grades.where(difficulty: "med").order(average: :desc).first.average
-			end
-			if !grades.find(difficulty: "hard").nil?
-				@hardAverage += grades.where(difficulty: "hard").order(average: :desc).first.average
-			end
-			@numQuiz += 1
-		end
-
-		@easyAverage /= @numQuiz
-		@medAverage /= @numQuiz
-		@hardAverage /= @numQuiz
-=end
 	end
 
 	def new
@@ -83,19 +60,25 @@ class StudentsController < ApplicationController
 			signInStudent student
 			redirect_to student_path(student)
 		else 
-			admin = Admin.find_by(email: params[:student][:email].downcase)
-			if admin && admin.authenticate(params[:student][:password])
-				signInAdmin admin
-				redirect_to admin_path(admin)
+			tutor = Tutor.find_by(email: params[:student][:email].downcase)
+			if tutor && tutor.authenticate(params[:student][:password])
+				signInTutor tutor
+				redirect_to tutor_path(tutor)
 			else
-				flash[:error] = "Invalid email or password"
-				redirect_to root_path
+				admin = Admin.find_by(email: params[:student][:email].downcase)
+				if admin && admin.authenticate(params[:student][:password])
+					signInAdmin admin
+					redirect_to admin_path(admin)
+				else
+					flash[:error] = "Invalid email or password"
+					redirect_to root_path
+				end
 			end
 		end
 	end
 
 	def signout
-		#works for both students and admins
+		#works for students tutors and admins
 		signOutStudent
 		respond_to do |format|
 			format.js {render action: "signoutAll"}
@@ -109,8 +92,9 @@ class StudentsController < ApplicationController
 		end
 
 		def studentParams
-			params.require(:student).permit(:firstName, :lastName, :email, :age,
-				:dob, :gender, :password, :password_confirmation)
+			params.require(:student).permit(:firstName, :lastName, :email, :street,
+				:city, :state, :zipcode, :phone, :dob, :gender, :biography,
+				:password, :password_confirmation)
 		end
 
 		def signInStudent(student)
@@ -118,6 +102,13 @@ class StudentsController < ApplicationController
 			cookies[:remember_token] = rememberToken
 			#change to cookies.permanent to make cookie stay after browser close
 			student.update_attribute(:remember_token, Student.digest(rememberToken))
+		end
+
+		def signInTutor(tutor)
+			rememberToken = Tutor.newRememberToken
+			cookies[:remember_token] = rememberToken
+			#change to cookies.permanent to make cookie stay after browser close
+			tutor.update_attribute(:remember_token, Tutor.digest(rememberToken))
 		end
 
 		def signInAdmin(admin)
@@ -128,7 +119,7 @@ class StudentsController < ApplicationController
 		end
 
 		def signOutStudent
-			#Works for both students and admins
+			#Works for students tutors and admins
 			cookies.delete(:remember_token)
 		end
 end

@@ -13,7 +13,7 @@ class CreateStudents < ActiveRecord::Migration
       t.binary :gender #0 = male, 1 = female
       t.text :biography
       t.integer :privacy
-      t.integer :status
+      t.integer :status, default: 0 #0 = active, 1 = suspended
       t.string :password_digest
       t.string :remember_token
 

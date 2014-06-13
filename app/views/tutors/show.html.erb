@@ -1,0 +1,12 @@
+<% provide(:title, 'Tutor Page') %>
+<% content_for :pageBar do %>
+	<%= link_to "Tutors", tutors_path %> > <%= link_to @tutor.firstName, tutor_path(@tutor) %>
+<% end %>
+<h3>This is the Tutor show page</h3>
+<p><%= @tutor.firstName %></p>
+<p><%= @tutor.email %></p>
+
+<% if currentTutor == @tutor %>
+	<p><%= link_to "Delete Account", @tutor, method: :delete, 
+				data: {confirm: "Are you sure?"} %></p>
+<% end %>

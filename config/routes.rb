@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :students
+  resources :tutors
   resources :admins
   resources :topics
   resources :videos, only: :show

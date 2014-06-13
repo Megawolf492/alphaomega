@@ -15,11 +15,11 @@ up to user to see how public he wants to be
 student profile page
 	-----go to it after login
 	recently viewed videos and attempted quizzes & grades
-	tutors contacted & lessons done
+	tutors contacted & sessions done
 tutor profile page
-	go to it after login
+	-----go to it after login
 	how much to charge students
-	lessons completed
+	sessions completed
 admin profile page
 	-----go to it after login
 	top quizzes
@@ -33,7 +33,7 @@ Tutoring sessions
 	prompted by students
 	confirmed by tutors
 Tutor profile
-	signup easily for free
+	-----signup easily for free
 	hidden until approved by admin
 
 Admin.create(name: "Ryan K", email: "ryank@mail.com", password: "ryanryan", password_confirmation: "ryanryan")

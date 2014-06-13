@@ -1,0 +1,8 @@
+<% provide(:title, "All Tutors") %>
+<% content_for :pageBar do %>
+	<%= link_to "Tutors", tutors_path %>
+<% end %>
+
+<% @tutors.each do |tutor| %>
+	<p><%= gravatar(tutor, size: 25)%><%= link_to tutor.firstName, tutor %></p>
+<% end %>
