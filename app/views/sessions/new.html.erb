@@ -1,0 +1,26 @@
+<% provide(:title, 'Create Session')%>
+<% content_for :pageBar do %>
+	<%= link_to "Tutors", tutors_path %>  > <%= link_to "Create Session", new_session_path %>
+<% end %>
+<h1>Create Session</h1>
+<%= form_for(@session) do |f| %>
+	
+	<%= render 'shared/errors', object: f.object%>
+
+	<p><%= select_datetime %></p>
+
+	<p><%= f.label :location%>
+	<%= f.text_field :location%></p>
+
+	<p><%= f.label :duration%>
+	<%= f.text_field :duration%></p>
+
+	<p><%= f.label :price%>
+	<%= f.text_field :price%></p>
+
+	<p><%= f.label "Note"%>
+	<%= f.text_area :tutorNote%></p>
+
+	<p><%= f.submit "Create Session" %></p>
+
+<% end %>

@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613151211) do
+ActiveRecord::Schema.define(version: 20140614142507) do
 
   create_table "admins", force: true do |t|
-    t.string   "firstName"
-    t.string   "lastName"
+    t.string   "displayName"
+    t.string   "realName"
     t.string   "email"
     t.date     "dob"
     t.binary   "gender"
     t.text     "biography"
+    t.integer  "privilege"
     t.integer  "privacy"
     t.string   "password_digest"
     t.string   "remember_token"
@@ -65,20 +66,29 @@ ActiveRecord::Schema.define(version: 20140613151211) do
     t.datetime "updated_at"
   end
 
+  create_table "sessions", force: true do |t|
+    t.datetime "time"
+    t.string   "location"
+    t.integer  "duration"
+    t.integer  "price"
+    t.text     "tutorNote"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "students", force: true do |t|
-    t.string   "firstName"
-    t.string   "lastName"
+    t.string   "displayName"
+    t.string   "realName"
     t.string   "email"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
+    t.string   "location"
     t.integer  "zipcode"
     t.integer  "phone"
     t.date     "dob"
     t.binary   "gender"
     t.text     "biography"
     t.integer  "privacy"
-    t.integer  "status",          default: 0
+    t.integer  "status",          default: 2
     t.string   "password_digest"
     t.string   "remember_token"
     t.datetime "created_at"
@@ -96,20 +106,17 @@ ActiveRecord::Schema.define(version: 20140613151211) do
   end
 
   create_table "tutors", force: true do |t|
-    t.string   "firstName"
-    t.string   "lastName"
+    t.string   "displayName"
+    t.string   "realName"
     t.string   "email"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state"
+    t.string   "location"
     t.integer  "zipcode"
     t.integer  "phone"
     t.date     "dob"
     t.binary   "gender"
-    t.decimal  "wage"
     t.text     "biography"
     t.integer  "privacy"
-    t.integer  "status",          default: 2
+    t.integer  "status",          default: 0
     t.string   "password_digest"
     t.string   "remember_token"
     t.datetime "created_at"

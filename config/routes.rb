@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :tutors
   resources :admins
   resources :topics
+  resources :sessions
   resources :videos, only: :show
   resources :worksheets, only: :show
   resources :quizzes, only: [:show, :edit, :update] do

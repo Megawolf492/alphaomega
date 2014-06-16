@@ -6,7 +6,7 @@
 <h1>Edit <%= @student.firstName %>'s Profile</h1>
 <%= form_for(@student) do |f| %>
 
-	<%= render 'shared/form', f: f %>
+	<%= render 'shared/editForm', f: f %>
 
 	<p><%= f.submit "Update Account" %></p>
 

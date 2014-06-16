@@ -30,8 +30,6 @@ Links page
 -----Quizzes
 	-----only fill-in-the-blanks
 Tutoring sessions
-	prompted by students
-	confirmed by tutors
 Tutor profile
 	-----signup easily for free
 	hidden until approved by admin
