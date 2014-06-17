@@ -1,4 +1,5 @@
 class Topic < ActiveRecord::Base
+	belongs_to :subject
 	has_many :videos, dependent: :destroy
 	has_many :worksheets, dependent: :destroy
 	has_many :quizzes, dependent: :destroy
