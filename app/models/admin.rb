@@ -4,7 +4,7 @@ class Admin < ActiveRecord::Base
 	validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
 				uniqueness: {case_sensitive: false}
 	has_secure_password
-	validates :password, length: {minimum: 6}
+	validates :password, on: :create, length: {minimum: 6}
 
 	def Admin.newRememberToken
 		SecureRandom.urlsafe_base64

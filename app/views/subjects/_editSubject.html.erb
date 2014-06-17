@@ -1,0 +1,8 @@
+<p><%= f.label :name%>
+<%= f.text_field :name%></p>
+
+<%= f.fields_for :topics, html:{multipart: true} do |subject_form| %>
+	<%= render 'topics/editTopic', f: subject_form %>
+	<%= subject_form.link_to_remove "Remove Topic" %>
+<% end %>
+<%= f.link_to_add "Add Topic", :topics %>

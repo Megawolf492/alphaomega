@@ -4,6 +4,7 @@
 <% end %>
 
 <%= nested_form_for @topic, html:{multipart: true} do |f| %>
+	<%= render 'shared/errors', object: f.object%>
 	
 	<%= render 'editTopic', f: f %>
 

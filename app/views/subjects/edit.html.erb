@@ -1,14 +1,14 @@
-<% provide(:title, 'Create Subject')%>
+<% provide(:title, 'Edit Subject')%>
 <% content_for :pageBar do %>
-	<%= link_to "Create Subject", '#' %>
+	<%= link_to "Edit Subject", '#' %>
 <% end %>
-<h1>Create Subject</h1>
+<h1>Edit Subject</h1>
 <%= nested_form_for [@department, @subject] do |f| %>
 	
 	<%= render 'shared/errors', object: f.object%>
 
 	<%= render 'editSubject', f: f %>
 
-	<p><%= f.submit "Create Subject" %></p>
+	<p><%= f.submit "Edit Subject" %></p>
 
 <% end %>

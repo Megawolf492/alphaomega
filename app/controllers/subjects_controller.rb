@@ -4,6 +4,7 @@ class SubjectsController < ApplicationController
 
 	def new
 		@subject = Subject.new
+		@department = Department.find(params[:department_id])
 	end
 
 	def create
@@ -23,13 +24,15 @@ class SubjectsController < ApplicationController
 
 	def edit
 		@subject = Subject.find(params[:id])
+		@department = Department.find(params[:department_id])
 	end
 
 	def update
 		@subject = Subject.find(params[:id])
+		@department = Department.find(params[:department_id])
 		if @subject.update_attributes(subjectParams)
 			flash[:success] = "Profile Updated"
-			redirect_to @subject
+			redirect_to [@department, @subject]
 		else
 			render 'edit'
 		end
@@ -44,7 +47,10 @@ class SubjectsController < ApplicationController
 	private
 
 		def subjectParams
-			params.require(:subject).permit(:time, :location, :duration, 
-				:price, :tutorNote)
+			params.require(:subject).permit(:time, :location, :duration, :price, :tutorNote, 
+				topics_attributes: [:id, :name, :description, :_destroy,
+					videos_attributes: [:id, :name, :topic_id, :imageFile, :_destroy],
+					worksheets_attributes: [:id, :name, :pdfFile, :topic_id, :_destroy],
+					quizzes_attributes: [:id, :name, :topic_id, :_destroy]])
 		end
 end
