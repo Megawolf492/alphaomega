@@ -2,7 +2,7 @@ class Topic < ActiveRecord::Base
 	belongs_to :subject
 	has_many :videos, dependent: :destroy
 	has_many :worksheets, dependent: :destroy
-	has_many :quizzes, dependent: :destroy
+	has_many :quizzes, as: :quizParent, dependent: :destroy
 
 	validates :name, presence: true, length: {maximum: 40}
 	validates :description, presence: true, length: {maximum: 4000}

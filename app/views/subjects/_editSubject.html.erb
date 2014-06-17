@@ -6,3 +6,8 @@
 	<%= subject_form.link_to_remove "Remove Topic" %>
 <% end %>
 <%= f.link_to_add "Add Topic", :topics %>
+
+<%= f.fields_for :quiz, :quiz_attributes do |quiz_form| %>
+	<%=  quiz_form.label :name %>
+	<%=  quiz_form.text_field :name %>
+<% end %>

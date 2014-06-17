@@ -35,7 +35,7 @@ class QuizzesController < ApplicationController
 
 	def show
 		@quiz = Quiz.find(params[:id])
-		@topic = @quiz.topic
+		@topic = @quiz.quizParent
 		if adminSignedIn?
 			@questions = @quiz.questions
 			render 'show'
@@ -48,11 +48,10 @@ class QuizzesController < ApplicationController
 
 	def edit
 		@quiz = Quiz.find(params[:id])
-		@topic = @quiz.topic
+		@topic = @quiz.quizParent
 	end
 
 	def update
-
 		@quiz = Quiz.find(params[:id])
 		if @quiz.update_attributes(quizParams)
 			flash[:success] = "Quiz Updated"

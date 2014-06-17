@@ -51,6 +51,7 @@ class SubjectsController < ApplicationController
 				topics_attributes: [:id, :name, :description, :_destroy,
 					videos_attributes: [:id, :name, :topic_id, :imageFile, :_destroy],
 					worksheets_attributes: [:id, :name, :pdfFile, :topic_id, :_destroy],
-					quizzes_attributes: [:id, :name, :topic_id, :_destroy]])
+					quizzes_attributes: [:id, :name, :quizParent, :_destroy]],
+				quiz_attributes: [:id, :name, :quizParent, :_destroy])
 		end
 end

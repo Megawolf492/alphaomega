@@ -74,7 +74,8 @@ ActiveRecord::Schema.define(version: 20140617134710) do
 
   create_table "quizzes", force: true do |t|
     t.string   "name"
-    t.integer  "topic_id"
+    t.integer  "quizParent_id"
+    t.string   "quizParent_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
