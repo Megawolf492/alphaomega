@@ -1,0 +1,13 @@
+<% provide(:title, @subject.name) %>
+<% content_for :pageBar do %>
+	<%= link_to "Departments", subjects_path %> > <%= link_to @subject.name, subject_path(@subject) %>
+<% end %>
+<p><%= @subject.name %></p>
+
+<% @subjects.each do |subject| %>
+	<p><%= link_to subject.name, subject_subject_path(@subject, subject) %></p>
+<% end %>
+
+<% if adminSignedIn?%>
+	<br/><p><%= link_to "Edit Subject", edit_subject_path %></p>
+<% end %>

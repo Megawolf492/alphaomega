@@ -1,0 +1,22 @@
+<% provide(:title, 'Edit Department')%>
+<% content_for :pageBar do %>
+	<%= link_to "Edit Department", edit_department_path(@department) %>
+<% end %>
+<h1>Edit Department</h1>
+<%= nested_form_for @department do |f| %>
+	
+	<%= render 'shared/errors', object: f.object%>
+
+	<p><%= f.label :name%>
+	<%= f.text_field :name%></p>
+
+	<%= f.fields_for :subjects, html:{multipart: true} do |subject_form| %>
+		<p><%= subject_form.label :name%>
+		<%= subject_form.text_field :name%></p>
+		<%= subject_form.link_to_remove "Remove Subject" %>
+	<% end %>
+	<%= f.link_to_add "Add Subject", :subjects %>
+
+	<p><%= f.submit "Edit Department" %></p>
+
+<% end %>

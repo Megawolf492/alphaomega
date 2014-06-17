@@ -1,9 +1,9 @@
 <% provide(:title, 'Admin Page') %>
 <% content_for :pageBar do %>
-	<%= link_to "Admins", admins_path %> > <%= link_to @admin.firstName, admin_path(@admin) %>
+	<%= link_to "Admins", admins_path %> > <%= link_to @admin.displayName, admin_path(@admin) %>
 <% end %>
 <h3>This is the Admin show page</h3>
-<p><%= @admin.firstName %></p>
+<p><%= @admin.displayName %></p>
 <p><%= @admin.email %></p>
 
 <% if currentAdmin == @admin %>

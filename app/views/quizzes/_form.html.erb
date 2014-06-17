@@ -1,5 +1,5 @@
 <dl>
-	<%= f.fields_for :questions, type, html:{multipart: true} do |qBuilder| %>
+	<%= f.fields_for :questions, html:{multipart: true} do |qBuilder| %>
 		<dt><p><%=  qBuilder.text_area :text %>
 			<%= qBuilder.label "Value" %>
 			<%= qBuilder.text_field :maxValue, size: 1 %>

@@ -1,0 +1,14 @@
+<% provide(:title, "Departments") %>
+<% content_for :pageBar do %>
+	<%= link_to "Departments", departments_path %>
+<% end %>
+
+<h2>All Departments</h2>
+
+<% if adminSignedIn? %>
+	<p><%= link_to "Create New Department", new_department_path %></p>
+<% end %>
+
+<% @departments.each do |department| %>
+	<p><%= link_to department.name, department%></p>
+<% end %>
