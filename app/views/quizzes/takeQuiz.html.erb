@@ -1,8 +1,8 @@
 <% provide(:title, @quiz.name) %>
 <% content_for :pageBar do %>
-	<%= link_to "Topics", topics_path %> > <%= link_to @topic.name, topic_path(@topic) %> > <%= link_to @quiz.name, quiz_path(@quiz) %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @parent.name, '#' %> > <%= link_to @quiz.name, quiz_path(@quiz) %>
 <% end %>
-
+<%= @quiz.quizParent.class.name %>
 <%= form_tag grade_quiz_path do %>
 	<% @questions.each do |question| %>
 		<%= hidden_field_tag ("id" + @counter.to_s), question.id %>

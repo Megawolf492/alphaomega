@@ -6,25 +6,15 @@
 
 <% if f.object.class.name.downcase != "admin" %>
 
-	<p><%= f.label :street%>
-	<%= f.text_field :street%></p>
 
-	<p><%= f.label :city%>
-	<%= f.text_field :city, size: 5%>
-	<%= f.label :state%>
-	<%= f.text_field :state, size: 3%>
-	<%= f.label :zipcode%>
+	<p><%= f.label :location%>
+	<%= f.text_field :location, size: 5%></p>
+
+	<p><%= f.label :zipcode%>
 	<%= f.text_field :zipcode, size: 1%></p>
 
 	<p><%= f.label :phone%>
 	<%= f.text_field :phone, size: 8%></p>
-
-	<% if f.object.class.name.downcase == "tutor" %>
-
-		<p><%= f.label :wage%>
-		<%= f.text_field :wage, size: 3%></p>
-
-	<% end %>
 
 <% end %>
 

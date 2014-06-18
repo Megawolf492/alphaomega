@@ -1,9 +1,9 @@
 <% provide(:title, 'Tutor Page') %>
 <% content_for :pageBar do %>
-	<%= link_to "Tutors", tutors_path %> > <%= link_to @tutor.firstName, tutor_path(@tutor) %>
+	<%= link_to "Tutors", tutors_path %> > <%= link_to @tutor.displayName, tutor_path(@tutor) %>
 <% end %>
 <h3>This is the Tutor show page</h3>
-<p><%= @tutor.firstName %></p>
+<p><%= @tutor.displayName %></p>
 <p><%= @tutor.email %></p>
 
 <% if currentTutor == @tutor %>

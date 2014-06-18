@@ -4,5 +4,5 @@
 <% end %>
 
 <% @tutors.each do |tutor| %>
-	<p><%= gravatar(tutor, size: 25)%><%= link_to tutor.firstName, tutor %></p>
+	<p><%= gravatar(tutor, size: 25)%><%= link_to tutor.displayName, tutor %></p>
 <% end %>

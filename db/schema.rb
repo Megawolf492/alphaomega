@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140617134710) do
   end
 
   create_table "certifications", force: true do |t|
+    t.integer  "grade"
+    t.integer  "status",     default: 0
     t.integer  "subject_id"
     t.integer  "tutor_id"
     t.datetime "created_at"

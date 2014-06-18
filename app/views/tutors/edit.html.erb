@@ -1,9 +1,9 @@
 <% provide(:title, "Edit Tutor") %>
 <% content_for :pageBar do %>
-	<%= link_to "Tutors", tutors_path %> > <%= link_to @tutor.firstName, tutor_path(@tutor) %> > <%= link_to "Edit", edit_tutor_path(@tutor) %>
+	<%= link_to "Tutors", tutors_path %> > <%= link_to @tutor.displayName, tutor_path(@tutor) %> > <%= link_to "Edit", edit_tutor_path(@tutor) %>
 <% end %>
 
-<h1>Edit <%= @tutor.firstName %>'s Profile</h1>
+<h1>Edit <%= @tutor.displayName %>'s Profile</h1>
 <%= form_for(@tutor) do |f| %>
 
 	<%= render 'shared/editForm', f: f %>

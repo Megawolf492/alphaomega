@@ -1,6 +1,7 @@
 class TutorsController < ApplicationController
 	include TutorsHelper
 	include AdminsHelper
+	include StudentsHelper
 	#before_action :tutorSignedIn
 	before_action :correctTutor, only: [:edit, :update, :destroy]
 
@@ -56,7 +57,7 @@ class TutorsController < ApplicationController
 		end
 
 		def tutorParams
-			params.require(:tutor).permit(:firstName, :lastName, :email, 
+			params.require(:tutor).permit(:displayName, :realName, :email, 
 				:street, :city, :state, :zipcode, :phone, :dob, :gender, 
 				:wage, :biography, :password, :password_confirmation)
 		end

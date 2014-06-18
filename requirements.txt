@@ -29,9 +29,12 @@ Links page
 	search bar (with autocomplete)
 -----Quizzes
 	-----only fill-in-the-blanks
-Tutoring sessions
+-----Tutoring sessions
 Tutor profile
 	-----signup easily for free
 	hidden until approved by admin
+
+Certifications have quiz grade and status (0 = requested, 1 = confirmed by admin)
+Tutors need to upload resume
 
 Admin.create(name: "Ryan K", email: "ryank@mail.com", password: "ryanryan", password_confirmation: "ryanryan")

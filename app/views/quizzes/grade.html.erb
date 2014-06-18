@@ -1,0 +1,16 @@
+<% provide(:title, "Quiz Results") %>
+<% content_for :pageBar do %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @subject.name, '#' %> > <%= link_to @quiz.name, quiz_path(@quiz) %> > <%= link_to "Grade", '#' %>
+<% end %>
+
+<h3>Quiz Results</h3>
+<p>Your grade is <%= @fGrade %>%</p>
+
+<% if @numI > 0 %>
+	<h4>Questions answered incorrectly</h4>
+	<% @iAnswers.each do |question| %>
+		<% if !question.nil? %>
+			<p><%= question.text %></p>
+		<% end %>
+	<% end %>
+<% end %>

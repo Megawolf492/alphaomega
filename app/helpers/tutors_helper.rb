@@ -17,6 +17,6 @@ module TutorsHelper
 		gravatarID = Digest::MD5::hexdigest(tutor.email.downcase)
 		size = options[:size]
 		gravatarURL = "https://secure.gravatar.com/avatar/#{gravatarID}?s=#{size}"
-		image_tag(gravatarURL, alt: tutor.firstName)
+		image_tag(gravatarURL, alt: tutor.displayName)
 	end
 end

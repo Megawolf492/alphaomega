@@ -1,8 +1,9 @@
 <% provide(:title, @quiz.name) %>
 <% content_for :pageBar do %>
-	<%= link_to "Topics", topics_path %> > <%= link_to @topic.name, topic_path(@topic) %> > <%= link_to @quiz.name, quiz_path(@quiz) %>
+	<%= link_to "Topics", topics_path %> > <%= link_to @parent.name, '#' %> > <%= link_to @quiz.name, quiz_path(@quiz) %>
 <% end %>
 <p><%= @quiz.name %></p>
+<%= @quiz.quizParent.class.name %>
 
 <h4>Questions</h4>
 
