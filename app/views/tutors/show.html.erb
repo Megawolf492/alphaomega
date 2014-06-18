@@ -6,6 +6,12 @@
 <p><%= @tutor.displayName %></p>
 <p><%= @tutor.email %></p>
 
+<h4>Certifications</h4>
+
+<% @certs.each do |cert| %>
+	<p><%= cert.subject.name %>    <%= cert.grade %>    <%= cert.status %></p>
+<% end %>
+
 <% if currentTutor == @tutor %>
 	<p><%= link_to "Delete Account", @tutor, method: :delete, 
 				data: {confirm: "Are you sure?"} %></p>

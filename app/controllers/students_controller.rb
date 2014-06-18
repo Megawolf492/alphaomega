@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
 	include StudentsHelper
 	include AdminsHelper
+	include TutorsHelper
 	before_action :correctStudent, only: [:edit, :update, :destroy]
 
 	def index
@@ -104,12 +105,7 @@ class StudentsController < ApplicationController
 			student.update_attribute(:remember_token, Student.digest(rememberToken))
 		end
 
-		def signInTutor(tutor)
-			rememberToken = Tutor.newRememberToken
-			cookies[:remember_token] = rememberToken
-			#change to cookies.permanent to make cookie stay after browser close
-			tutor.update_attribute(:remember_token, Tutor.digest(rememberToken))
-		end
+		
 
 		def signInAdmin(admin)
 			rememberToken = Admin.newRememberToken

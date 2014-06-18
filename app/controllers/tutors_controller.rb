@@ -28,6 +28,7 @@ class TutorsController < ApplicationController
 
 	def show
 		@tutor = Tutor.find(params[:id])
+		@certs = Certification.where(tutor_id: @tutor.id)
 	end
 
 	def edit
