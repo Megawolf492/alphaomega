@@ -60,6 +60,6 @@ class TutorsController < ApplicationController
 		def tutorParams
 			params.require(:tutor).permit(:displayName, :realName, :email, 
 				:street, :city, :state, :zipcode, :phone, :dob, :gender, 
-				:wage, :biography, :password, :password_confirmation)
+				:wage, :biography, :resumeFile, :password, :password_confirmation)
 		end
 end

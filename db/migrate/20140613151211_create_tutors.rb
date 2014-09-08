@@ -10,6 +10,7 @@ class CreateTutors < ActiveRecord::Migration
       t.date :dob
       t.binary :gender #0 = male, 1 = female
       t.text :biography
+      t.string :fileName
       t.integer :privacy
       t.integer :status, default: 0 #0 = active, 1 = suspended
       t.string :password_digest

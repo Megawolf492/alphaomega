@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20140617134710) do
     t.date     "dob"
     t.binary   "gender"
     t.text     "biography"
+    t.string   "fileName"
     t.integer  "privacy"
     t.integer  "status",          default: 0
     t.string   "password_digest"

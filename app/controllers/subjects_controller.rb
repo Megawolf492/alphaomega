@@ -30,7 +30,7 @@ class SubjectsController < ApplicationController
 		@subject = Subject.find(params[:id])
 		/@department = Department.find(params[:department_id])/
 		if @subject.quiz == nil
-			@subject.quiz.build
+			@subject.build_quiz
 		end
 	end
 
@@ -59,6 +59,6 @@ class SubjectsController < ApplicationController
 					videos_attributes: [:id, :name, :topic_id, :imageFile, :_destroy],
 					worksheets_attributes: [:id, :name, :pdfFile, :topic_id, :_destroy],
 					quizzes_attributes: [:id, :name, :quizParent, :_destroy]],
-				quizzes_attributes: [:id, :name, :quizParent, :_destroy])
+				quiz_attributes: [:id, :name, :quizParent, :_destroy])
 		end
 end

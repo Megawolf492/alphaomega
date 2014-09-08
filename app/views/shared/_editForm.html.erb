@@ -29,3 +29,10 @@
 
 <p><%= f.label :biography%>
 <%= f.text_area :biography%></p>
+
+<% if f.object.class.name.downcase == "tutor" %>
+
+	<p><%= f.label :resume%>
+	<%= f.file_field :resumeFile%></p>
+
+<% end %>

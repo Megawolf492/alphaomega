@@ -9,6 +9,7 @@
 <% end %>
 
 <% if adminSignedIn?%>
+	<p><%= link_to @subject.quiz.name, quiz_path(@subject.quiz) %></p>
 	<br/><p><%= link_to "Edit Subject", edit_subject_path( @subject) %></p>
 <% end %>
 
