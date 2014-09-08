@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :quizzes, only: [:show, :edit, :update] do
     post :grade, on: :member
   end
+  resources :certifications, only: :certify do
+    get :certify, on: :member
+  end
 
   root 'static_pages#home'
 

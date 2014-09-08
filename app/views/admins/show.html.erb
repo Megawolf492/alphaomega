@@ -8,7 +8,7 @@
 
 <% if currentAdmin == @admin %>
 	<% @certifications.each do |cert| %>
-		<p><%= cert.tutor.displayName %>(<%= cert.tutor.realName %>)		<%= cert.subject.name %>    <%= link_to "Resume", resume_tutor_path(cert.tutor), target: "_blank" %>		Certify?</p>
+		<p><%= cert.tutor.displayName %>(<%= cert.tutor.realName %>)		<%= cert.subject.name %>    <%= link_to "Resume", resume_tutor_path(cert.tutor), target: "_blank" %>		<%= link_to "Certify?", certify_certification_path(cert),data: {confirm: "Are you sure?"} %></p>
 	<% end %>
 
 	<p><%= link_to "Delete Account", @admin, method: :delete, 
