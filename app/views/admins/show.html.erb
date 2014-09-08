@@ -7,6 +7,10 @@
 <p><%= @admin.email %></p>
 
 <% if currentAdmin == @admin %>
+	<% @certifications.each do |cert| %>
+		<p><%= cert.tutor.displayName %>(<%= cert.tutor.realName %>)		<%= cert.subject.name %>		Certify?</p>
+	<% end %>
+
 	<p><%= link_to "Delete Account", @admin, method: :delete, 
 				data: {confirm: "Are you sure?"} %></p>
 <% end %>

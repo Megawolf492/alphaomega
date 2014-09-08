@@ -3,6 +3,7 @@ class Student < ActiveRecord::Base
 	has_many :viewings, dependent: :destroy
 	has_many :grades, dependent: :destroy
 	has_many :videos, through: :viewings, dependent: :destroy
+	has_and_belongs_to_many :sessions
 
 	validates :firstName, presence: true, length: {maximum: 40}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -1,0 +1,15 @@
+Departments
+<ul>
+	<% Department.all.each do |department| %>
+		<li>
+			<%= link_to department.name, department %>
+			<ul>
+				<% department.subjects.all.each do |subject| %>
+					<li>
+						<%= link_to subject.name, subject %>
+					</li>
+				<% end %>
+			</ul>
+		</li>
+	<% end %>
+</ul>

@@ -1,4 +1,7 @@
 class Tutor < ActiveRecord::Base
+	has_many :certifications, dependent: :destroy
+	has_many :sessions, dependent: :destroy
+
 	validates :displayName, presence: true, length: {maximum: 40}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},

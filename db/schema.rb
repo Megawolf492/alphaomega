@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140617134710) do
 
   create_table "certifications", force: true do |t|
     t.integer  "grade"
+    t.integer  "wage"
     t.integer  "status",     default: 0
     t.integer  "subject_id"
     t.integer  "tutor_id"
@@ -92,6 +93,22 @@ ActiveRecord::Schema.define(version: 20140617134710) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sessions_students", id: false, force: true do |t|
+    t.integer "session_id", null: false
+    t.integer "student_id", null: false
+  end
+
+  add_index "sessions_students", ["session_id"], name: "index_sessions_students_on_session_id"
+  add_index "sessions_students", ["student_id"], name: "index_sessions_students_on_student_id"
+
+  create_table "sessions_subjects", id: false, force: true do |t|
+    t.integer "session_id", null: false
+    t.integer "subject_id", null: false
+  end
+
+  add_index "sessions_subjects", ["session_id"], name: "index_sessions_subjects_on_session_id"
+  add_index "sessions_subjects", ["subject_id"], name: "index_sessions_subjects_on_subject_id"
 
   create_table "students", force: true do |t|
     t.string   "displayName"

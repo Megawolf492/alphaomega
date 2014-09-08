@@ -3,7 +3,7 @@
 	<%= link_to "Edit Subject", '#' %>
 <% end %>
 <h1>Edit Subject</h1>
-<%= nested_form_for [@department, @subject] do |f| %>
+<%= nested_form_for @subject, html:{multipart: true} do |f| %>
 	
 	<%= render 'shared/errors', object: f.object%>
 

@@ -41,7 +41,7 @@ class QuizzesController < ApplicationController
 			grade.save
 		end
 
-		if tutorSignedIn?
+		if tutorSignedIn? && @subject.department != nil
 			cert = Certification.find_or_initialize_by(subject_id: @subject.id, 
 														tutor_id: currentTutor.id)
 			if cert.grade.nil? || @fGrade > cert.grade

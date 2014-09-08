@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   resources :students
   resources :tutors
   resources :admins
-  resources :departments do
+  resources :departments 
     resources :subjects
-  end
+  
   resources :topics
   resources :sessions
   resources :videos, only: :show

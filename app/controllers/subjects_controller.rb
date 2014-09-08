@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-	#include SubjectsHelper
+	include TutorsHelper
 	#before_action :correctSubject, only: [:edit, :update, :destroy]
 
 	def new
@@ -20,19 +20,26 @@ class SubjectsController < ApplicationController
 	def show
 		@subject = Subject.find(params[:id])
 		@topics = @subject.topics
+		if tutorSignedIn?
+			@certification = Certification.where(subject_id: @subject.id, 
+												tutor_id: currentTutor.id).first
+		end
 	end
 
 	def edit
 		@subject = Subject.find(params[:id])
-		@department = Department.find(params[:department_id])
+		/@department = Department.find(params[:department_id])/
+		if @subject.quiz == nil
+			@subject.quiz.build
+		end
 	end
 
 	def update
 		@subject = Subject.find(params[:id])
-		@department = Department.find(params[:department_id])
+		/@department = Department.find(params[:department_id])/
 		if @subject.update_attributes(subjectParams)
 			flash[:success] = "Profile Updated"
-			redirect_to [@department, @subject]
+			redirect_to @subject
 		else
 			render 'edit'
 		end
@@ -52,6 +59,6 @@ class SubjectsController < ApplicationController
 					videos_attributes: [:id, :name, :topic_id, :imageFile, :_destroy],
 					worksheets_attributes: [:id, :name, :pdfFile, :topic_id, :_destroy],
 					quizzes_attributes: [:id, :name, :quizParent, :_destroy]],
-				quiz_attributes: [:id, :name, :quizParent, :_destroy])
+				quizzes_attributes: [:id, :name, :quizParent, :_destroy])
 		end
 end

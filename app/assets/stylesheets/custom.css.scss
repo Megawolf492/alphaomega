@@ -55,6 +55,12 @@ div#navigation
 			display: none;
 			background: #404040;
 			position: absolute;
+			ul
+			{
+				
+				left: 100%;
+				top: 0;
+			}
 		}
 		li
 		{

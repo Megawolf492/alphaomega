@@ -37,4 +37,7 @@ Tutor profile
 Certifications have quiz grade and status (0 = requested, 1 = confirmed by admin)
 Tutors need to upload resume
 
+has_and_belong_to_many
+
+
 Admin.create(name: "Ryan K", email: "ryank@mail.com", password: "ryanryan", password_confirmation: "ryanryan")

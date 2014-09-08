@@ -10,5 +10,13 @@ class CreateSessions < ActiveRecord::Migration
 
       t.timestamps
     end
+    create_join_table :sessions, :students do |t|
+      t.index :session_id
+      t.index :student_id
+    end
+    create_join_table :sessions, :subjects do |t|
+      t.index :session_id
+      t.index :subject_id
+    end
   end
 end

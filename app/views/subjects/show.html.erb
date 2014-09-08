@@ -1,6 +1,6 @@
 <% provide(:title, @subject.name) %>
 <% content_for :pageBar do %>
-	<%= link_to "Departments", departments_path %> > <%= link_to @subject.name, department_subject_path(@subject.department, @subject) %>
+	<%= link_to "Departments", departments_path %> > <%= link_to @subject.name, '#' %>
 <% end %>
 <p><%= @subject.name %></p>
 
@@ -9,5 +9,20 @@
 <% end %>
 
 <% if adminSignedIn?%>
-	<br/><p><%= link_to "Edit Subject", edit_department_subject_path(@subject.department, @subject) %></p>
+	<br/><p><%= link_to "Edit Subject", edit_subject_path( @subject) %></p>
+<% end %>
+
+<% if tutorSignedIn?%>
+	<% if @certification == nil %>
+		<p>You are not certified in this subject. <%= link_to "Take the test!", quiz_path(@subject.quiz) %></p>
+	<% else %>
+		<% case @certification.status %>
+			<% when 0 %>
+				<p>You did not pass the certification test. <%= link_to "Take it again!", quiz_path(@subject.quiz) %></p>
+			<% when 1 %>
+				<p>You passed the certification test. However, an admin has yet to confirm the certification.</p>
+			<% when 2 %>
+				<p>You are certified in this subject!</p>
+		<% end %>
+	<% end %>
 <% end %>

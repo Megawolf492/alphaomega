@@ -23,6 +23,7 @@ class AdminsController < ApplicationController
 
 	def show
 		@admin = Admin.find(params[:id])
+		@certifications = Certification.where(status: 1)
 	end
 
 	def edit
