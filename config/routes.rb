@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resources :students
-  resources :tutors
+  resources :tutors do
+    get :resume, on: :member
+  end
   resources :admins
   resources :departments 
-    resources :subjects
+  resources :subjects
   
   resources :topics
   resources :sessions

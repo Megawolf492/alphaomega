@@ -51,6 +51,12 @@ class TutorsController < ApplicationController
 		redirect_to root_path
 	end
 
+	def resume
+		tutor = Tutor.find(params[:id])
+		pdfFilename = File.join("public/tutors/#{tutor.id}", tutor.fileName)
+		send_file(pdfFilename, filename: tutor.fileName, disposition: 'inline', type: "application/pdf")
+	end
+
 	private
 
 		def correctTutor
