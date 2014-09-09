@@ -1,0 +1,13 @@
+<% provide(:title, 'Tutoring Session') %>
+<% content_for :pageBar do %>
+	<%= link_to "Sessions", sessions_path %> > <%= link_to "Session", session_path(@session) %>
+<% end %>
+
+<h3>This is the session show page</h3>
+<p><%= @session.time%>  <%= @session.duration %></p>
+<p><%= @session.location %></p>
+<p>$<%= @session.price %></p>
+<br/>
+<% @session.subjects.each do |subject| %>
+<p><%= subject.name %></p>
+<% end %>

@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
-	#include SessionsHelper
+	include TutorsHelper
 	#before_action :correctSession, only: [:edit, :update, :destroy]
 
 	def new
 		@session = Session.new
+		@certs = Certification.where(tutor: currentTutor, status: 2)
 	end
 
 	def create
@@ -22,12 +23,13 @@ class SessionsController < ApplicationController
 
 	def edit
 		@session = Session.find(params[:id])
+		@certs = Certification.where(tutor: currentTutor, status: 2)
 	end
 
 	def update
 		@session = Session.find(params[:id])
 		if @session.update_attributes(sessionParams)
-			flash[:success] = "Profile Updated"
+			flash[:success] = "Session Updated"
 			redirect_to @session
 		else
 			render 'edit'
@@ -44,6 +46,6 @@ class SessionsController < ApplicationController
 
 		def sessionParams
 			params.require(:session).permit(:time, :location, :duration, 
-				:price, :tutorNote)
+				:price, :tutorNote, :subjects, :students)
 		end
 end

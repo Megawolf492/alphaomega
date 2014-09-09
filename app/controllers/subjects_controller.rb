@@ -35,6 +35,7 @@ class SubjectsController < ApplicationController
 	end
 
 	def update
+		bob
 		@subject = Subject.find(params[:id])
 		/@department = Department.find(params[:department_id])/
 		if @subject.update_attributes(subjectParams)

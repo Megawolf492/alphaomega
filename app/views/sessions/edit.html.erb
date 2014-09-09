@@ -1,0 +1,14 @@
+<% provide(:title, 'Edit Session')%>
+<% content_for :pageBar do %>
+	<%= link_to "Tutors", tutors_path %>  > <%= link_to "Edit Session", edit_session_path %>
+<% end %>
+<h1>Edit Session</h1>
+<%= form_for(@session) do |f| %>
+	
+	<%= render 'shared/errors', object: f.object%>
+
+	<%= render 'sessions/form', f: f %>
+
+	<p><%= f.submit "Edit Session" %></p>
+
+<% end %>

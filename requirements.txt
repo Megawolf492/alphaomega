@@ -34,8 +34,8 @@ Tutor profile
 	-----signup easily for free
 	hidden until approved by admin
 
-Certifications have quiz grade and status (0 = requested, 1 = confirmed by admin)
-Tutors need to upload resume
+-----Certifications have quiz grade and status (0 = requested, 1 = confirmed by admin)
+-----Tutors need to upload resume
 
 has_and_belong_to_many
 
