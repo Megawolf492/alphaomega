@@ -4,5 +4,5 @@
 <% end %>
 
 <% @students.each do |student| %>
-	<p><%= gravatar(student, size: 25)%><%= link_to student.firstName, student %></p>
+	<p><%= gravatar(student, size: 25)%><%= link_to student.displayName, student %></p>
 <% end %>

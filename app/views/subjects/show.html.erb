@@ -9,13 +9,21 @@
 <% end %>
 
 <% if adminSignedIn?%>
-	<p><%= link_to @subject.quiz.name, quiz_path(@subject.quiz) %></p>
+	<% if @subject.quiz.nil?%>
+		<p><%#= link_to "Create Certification Quiz", new_quiz_path %></p>
+	<% else %>
+		<p><%= link_to @subject.quiz.name, quiz_path(@subject.quiz) %></p>
+	<% end %>
 	<br/><p><%= link_to "Edit Subject", edit_subject_path( @subject) %></p>
 <% end %>
 
 <% if tutorSignedIn?%>
 	<% if @certification == nil %>
-		<p>You are not certified in this subject. <%= link_to "Take the test!", quiz_path(@subject.quiz) %></p>
+		<% if @subject.quiz.nil? %>
+			<p>There isn't a certification quiz for this subject yet! Check back later when there is.</p>
+		<% else %>
+			<p>You are not certified in this subject. <%= link_to "Take the test!", quiz_path(@subject.quiz) %></p>
+		<% end %>
 	<% else %>
 		<% case @certification.status %>
 			<% when 0 %>

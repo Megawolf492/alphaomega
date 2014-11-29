@@ -1,28 +1,23 @@
-<div id="navigation">
-	<b><%= link_to "Alpha Omega Tutoring", root_path%></b>
-	<ul>
-		<li><%= link_to "Students", students_path%></li>
-		<li><%= link_to "Tutors", tutors_path%></li>
-		<li>
-			<%= render 'layouts/departments' %>
-		</li>
-		<li id="signin">
-			<% if studentSignedIn? %>
-				<%= render 'shared/signoutS' %>
+<b><%= link_to "Alpha Omega Tutoring", root_path%></b>
+<ul>
+	<li><%= link_to "Students", students_path%></li>
+	<li><%= link_to "Tutors", tutors_path%></li>
+	<li>
+		<%= render 'layouts/departments' %>
+	</li>
+	<li id="signin">
+		<% if studentSignedIn? %>
+			<%= render 'shared/signoutS' %>
+		<% else %>
+			<% if tutorSignedIn? %>
+				<%= render 'shared/signoutT' %>
 			<% else %>
-				<% if tutorSignedIn? %>
-					<%= render 'shared/signoutT' %>
+				<% if adminSignedIn? %>
+					<%= render 'shared/signoutA' %>
 				<% else %>
-					<% if adminSignedIn? %>
-						<%= render 'shared/signoutA' %>
-					<% else %>
-						<%= render 'shared/signin'%>
-					<% end %>
+					<%= render 'shared/signin'%>
 				<% end %>
 			<% end %>
-		</li>
-	</ul>
-</div>
-<div id="pagebar">
-	<%= fullPageBar(yield(:pageBar)) %>
-</div>
+		<% end %>
+	</li>
+</ul>

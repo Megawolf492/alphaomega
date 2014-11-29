@@ -8,18 +8,23 @@
 	</head>
 	<body>
 
-		<%= render 'layouts/header' %>
+		<div id="navigation">
+			<%= render 'layouts/header' %>
+		</div>
 
-		<% flash.each do |key, value|%>
-			<p><%= value%></p>
-		<% end%>
+		<div id="pagebar">
+			<%= fullPageBar(yield(:pageBar)) %>
+		</div>
+		<div id="content">
+			<% flash.each do |key, value|%>
+				<p><%= value%></p>
+			<% end%>
 
-		<%= yield %>
+			<%= yield %>
 
-		<p id="footer">
-			<%= link_to "About", about_path%> | 
-			<%= link_to "Links", links_path%>
-		</p>
-		
+			<p id="footer">
+				<%= link_to "About", about_path%> | <%= link_to "Links", links_path%>
+			</p>
+		</div>
 	</body>
 </html>

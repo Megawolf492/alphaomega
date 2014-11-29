@@ -8,6 +8,6 @@
 <%= f.link_to_add "Add Topic", :topics %>
 
 <%= f.fields_for :quiz do |quiz_form| %>
-	<%=  quiz_form.label :name %>
+	<%=  quiz_form.label "Certification Quiz Name" %>
 	<%=  quiz_form.text_field :name %>
 <% end %>
