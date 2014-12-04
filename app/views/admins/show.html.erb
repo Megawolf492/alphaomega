@@ -2,15 +2,24 @@
 <% content_for :pageBar do %>
 	<%= link_to "Admins", admins_path %> > <%= link_to @admin.displayName, admin_path(@admin) %>
 <% end %>
-<h3>This is the Admin show page</h3>
-<p><%= @admin.displayName %></p>
-<p><%= @admin.email %></p>
 
-<% if currentAdmin == @admin %>
-	<% @certifications.each do |cert| %>
-		<p><%= cert.tutor.displayName %>(<%= cert.tutor.realName %>)		<%= cert.subject.name %>    <%= link_to "Resume", resume_tutor_path(cert.tutor), target: "_blank" %>		<%= link_to "Certify?", certify_certification_path(cert),data: {confirm: "Are you sure?"} %></p>
-	<% end %>
-
-	<p><%= link_to "Delete Account", @admin, method: :delete, 
+<div class="bio">
+	<p class="name"><%= @admin.displayName %></p>
+	<p><%= @admin.realName unless @admin.realName.blank?%></p>
+	<br/>
+	<p class="privilege"><%= @admin.privilege == "0" ? "Full Admin" : "Content Admin" %></p>
+	<p><%= @admin.email %></p>
+	<p><%= @admin.dob unless @admin.dob.blank?%></p>
+	<p><%= @admin.gender == "0" ? "Male" : "Female" %></p>
+	<p><%= @admin.biography unless @admin.biography.blank?%></p>
+	<p><%= link_to "Delete Account", @admin, method: :delete,
 				data: {confirm: "Are you sure?"} %></p>
-<% end %>
+</div>
+
+<div class="main">
+	<% if currentAdmin == @admin %>
+		<% @certifications.each do |cert| %>
+			<p><%= cert.tutor.displayName %>(<%= cert.tutor.realName %>)		<%= cert.subject.name %>    <%= link_to "Resume", resume_tutor_path(cert.tutor), target: "_blank" %>		<%= link_to "Certify?", certify_certification_path(cert),data: {confirm: "Are you sure?"} %></p>
+		<% end %>
+	<% end %>
+</div>

@@ -1,14 +1,14 @@
 Sign In | <%= link_to "Register", signup_path %>
 <ul>
+	<%= form_for(:student, url: signin_path) do |f| %>
 	<li>
-		<%= form_for(:student, url: signin_path) do |f| %>
-
-
 		<%= f.text_field :email, size: 10, value: "Email", onfocus: "this.value=''", autocomplete: :off%>
-
-		<%= f.text_field :password, size: 10, value: "Password", onfocus: "this.value=''; this.type='password'"%>
-
-		<%= f.submit "Sign In" %>
-		<% end %>
 	</li>
+	<li>
+		<%= f.text_field :password, size: 10, value: "Password", onfocus: "this.value=''; this.type='password'"%>
+	</li>
+	<li>
+		<%= f.submit "Sign In" %>
+	</li>
+	<% end %>
 </ul>

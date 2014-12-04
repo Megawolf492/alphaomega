@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
 
 	def show
 		@student = Student.find(params[:id])
-		@numVideos = Video.all.count
+		@numVideos = Video.count
 		@numViews = Viewing.where(student_id: @student.id).count
 		@percentage = (@numViews.to_f / @numVideos) * 100
 		@quizzes = Quiz.all
@@ -60,7 +60,7 @@ class StudentsController < ApplicationController
 		if student && student.authenticate(params[:student][:password])
 			signInStudent student
 			redirect_to student_path(student)
-		else 
+		else
 			tutor = Tutor.find_by(email: params[:student][:email].downcase)
 			if tutor && tutor.authenticate(params[:student][:password])
 				signInTutor tutor
@@ -105,7 +105,7 @@ class StudentsController < ApplicationController
 			student.update_attribute(:remember_token, Student.digest(rememberToken))
 		end
 
-		
+
 
 		def signInAdmin(admin)
 			rememberToken = Admin.newRememberToken

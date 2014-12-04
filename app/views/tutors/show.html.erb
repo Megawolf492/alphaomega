@@ -2,18 +2,29 @@
 <% content_for :pageBar do %>
 	<%= link_to "Tutors", tutors_path %> > <%= link_to @tutor.displayName, tutor_path(@tutor) %>
 <% end %>
-<h3>This is the Tutor show page</h3>
-<p><%= @tutor.displayName %></p>
-<p><%= @tutor.email %></p>
-<p><%= @tutor.fileName %></p>
 
-<h4>Certifications</h4>
-
-<% @certs.each do |cert| %>
-	<p><%= cert.subject.name %>    <%= cert.grade %>    <%= cert.status %></p>
-<% end %>
-
-<% if currentTutor == @tutor %>
-	<p><%= link_to "Delete Account", @tutor, method: :delete, 
+<div class="bio">
+	<p class="name"><%= @tutor.displayName %></p>
+	<p><%= @tutor.realName unless @tutor.realName.blank?%></p>
+	<br/>
+	<p class="privilege"><%#= @tutor.privilege == "0" ? "Full Admin" : "Content Admin" %></p>
+	<p><%= @tutor.email %></p>
+	<p><%= @tutor.dob unless @tutor.dob.blank?%></p>
+	<p><%= @tutor.gender == "0" ? "Male" : "Female" %></p>
+	<p><%= @tutor.biography unless @tutor.biography.blank?%></p>
+	<p><%= link_to "Delete Account", @tutor, method: :delete,
 				data: {confirm: "Are you sure?"} %></p>
-<% end %>
+</div>
+
+<div class="main">
+	<h4>Certifications</h4>
+
+	<% @certs.each do |cert| %>
+		<p><%= cert.subject.name %>    <%= cert.grade %>    <%= cert.status %></p>
+	<% end %>
+
+	<% if currentTutor == @tutor %>
+		<p><%= link_to "Delete Account", @tutor, method: :delete,
+					data: {confirm: "Are you sure?"} %></p>
+	<% end %>
+</div>

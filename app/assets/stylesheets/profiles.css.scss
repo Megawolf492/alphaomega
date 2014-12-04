@@ -1,0 +1,21 @@
+.bio
+{
+    width: 300px;
+    float: left;
+    .name
+    {
+        font-size: 30px;
+    }
+    .privilege
+    {
+        font-size: 20px;
+    }
+}
+
+.main
+{
+    margin-left: 20px;
+    display: inline;
+    width: 400px;
+    float: right;
+}
