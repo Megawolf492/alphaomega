@@ -2,6 +2,8 @@ class Tutor < ActiveRecord::Base
 	require 'fileutils'
 	has_many :certifications, dependent: :destroy
 	has_many :sessions, dependent: :destroy
+	has_many :hirings
+	has_many :students, through: :hirings
 
 	validates :displayName, presence: true, length: {maximum: 40}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -20,9 +22,9 @@ class Tutor < ActiveRecord::Base
 
 	def resumeFile=(inputData)
 		self.fileName = inputData.original_filename
-		
+
 		id = self.id
-		
+
 		directory = "public/tutors/#{id}"
 		FileUtils.mkdir_p(directory)
 		File.open(File.join(directory, self.fileName), "wb"){|f| f.write(inputData.read)}

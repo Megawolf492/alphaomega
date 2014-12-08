@@ -9,5 +9,18 @@
 <p>$<%= @session.price %></p>
 <br/>
 <% @session.subjects.each do |subject| %>
-<p><%= subject.name %></p>
+	<p><%= subject.name %></p>
+<% end %>
+
+<% @session.students.each do |student| %>
+	<p><%= student.displayName %></p>
+<% end %>
+
+<% case @session.status %>
+ 	<% when 0 %>
+		<p>Upcoming</p>
+	<% when 1 %>
+		<p>Upcoming</p>
+	<% when 2 %>
+		<p>Upcoming</p>
 <% end %>

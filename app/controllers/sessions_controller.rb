@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 	def new
 		@session = Session.new
 		@certs = Certification.where(tutor: currentTutor, status: 2)
+		@students = currentTutor.students
 	end
 
 	def create
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
 		else
 			render 'new'
 		end
-	end	
+	end
 
 	def show
 		@session = Session.find(params[:id])
@@ -24,6 +25,7 @@ class SessionsController < ApplicationController
 	def edit
 		@session = Session.find(params[:id])
 		@certs = Certification.where(tutor: currentTutor, status: 2)
+		@students = currentTutor.students
 	end
 
 	def update
@@ -45,7 +47,7 @@ class SessionsController < ApplicationController
 	private
 
 		def sessionParams
-			params.require(:session).permit(:time, :location, :duration, 
-				:price, :tutorNote, :subjects, :students)
+			params.require(:session).permit(:time, :location, :duration,
+				:price, :tutorNote, :subjects, :students, :status)
 		end
 end

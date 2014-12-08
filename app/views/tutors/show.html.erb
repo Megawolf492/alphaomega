@@ -23,6 +23,18 @@
 		<p><%= cert.subject.name %>    <%= cert.grade %>    <%= cert.status %></p>
 	<% end %>
 
+	<% if studentSignedIn?%>
+		<% if @hired.nil? %>
+			<%= form_for Hiring.new do |h| %>
+				<%= h.hidden_field :student_id, value: currentStudent.id %>
+				<%= h.hidden_field :tutor_id, value: @tutor.id %>
+				<%= h.submit "Hire Tutor" %>
+			<% end %>
+		<% else %>
+			<%= link_to "Fire Tutor", hiring_path(@hired), method: "delete", data: {confirm: "Are you sure?"} %>
+		<% end %>
+	<% end %>
+
 	<% if currentTutor == @tutor %>
 		<p><%= link_to "Delete Account", @tutor, method: :delete,
 					data: {confirm: "Are you sure?"} %></p>

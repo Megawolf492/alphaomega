@@ -5,6 +5,13 @@ class Session < ActiveRecord::Base
 
 	def subjects=(inputData)
 		subs = inputData
-		self.subjects << Subject.find(subs)
+		subj = Subject.find(subs)
+		self.subjects << subj unless self.subjects.include?(subj)
+	end
+
+	def students=(inputData)
+		subs = inputData
+		stud = Student.find(subs)
+		self.students << stud unless self.students.include?(stud)
 	end
 end

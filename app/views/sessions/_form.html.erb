@@ -1,8 +1,8 @@
-<p><%= select_datetime %></p>
+<p><%= f.datetime_select :time %></p>
 
 
 <p><%= f.select(:subjects, @certs.all.collect {|c| [c.subject.name, c.subject.id]}) %></p>
-
+<p><%= f.select(:students, @students.all.collect {|c| [c.displayName, c.id]}) %></p>
 
 <p><%= f.label :location%>
 <%= f.text_field :location%></p>
@@ -15,3 +15,7 @@
 
 <p><%= f.label "Note"%>
 <%= f.text_area :tutorNote%></p>
+
+<p><%= f.radio_button :status, 0 %>Upcoming</p>
+<p><%= f.radio_button :status, 1 %>Sucessful</p>
+<p><%= f.radio_button :status, 2 %>Unsucessful</p>

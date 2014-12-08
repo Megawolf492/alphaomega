@@ -20,7 +20,7 @@ class TutorsController < ApplicationController
 		else
 			render 'new'
 		end
-	end	
+	end
 
 	def index
 		@tutors = Tutor.all
@@ -28,7 +28,13 @@ class TutorsController < ApplicationController
 
 	def show
 		@tutor = Tutor.find(params[:id])
+		if tutorSignedIn? && currentTutor == @tutor
+			redirect_to root_path
+		end
 		@certs = Certification.where(tutor_id: @tutor.id)
+		if studentSignedIn?
+			@hired = Hiring.where(tutor: @tutor, student: currentStudent).first
+		end
 	end
 
 	def edit
@@ -64,8 +70,8 @@ class TutorsController < ApplicationController
 		end
 
 		def tutorParams
-			params.require(:tutor).permit(:displayName, :realName, :email, 
-				:street, :city, :state, :zipcode, :phone, :dob, :gender, 
+			params.require(:tutor).permit(:displayName, :realName, :email,
+				:street, :city, :state, :zipcode, :phone, :dob, :gender,
 				:wage, :biography, :resumeFile, :password, :password_confirmation)
 		end
 end

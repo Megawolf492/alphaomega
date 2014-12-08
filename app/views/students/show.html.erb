@@ -3,18 +3,46 @@
 	<%= link_to "Students", students_path %> > <%= link_to @student.displayName, student_path(@student) %>
 <% end %>
 
-<h3>This is the student show page</h3>
-<p><%= gravatar @student%><%= @student.displayName %></p>
-<p><%= @student.email %></p>
+<div class="bio">
+	<p class="name"><%= @student.displayName %></p>
+	<p><%= @student.realName unless @student.realName.blank?%></p>
+	<p><%= gravatar(@student, size: 200)%></p>
+	<br/>
+	<p><%= @student.created_at.strftime("Joined: %b #{@student.created_at.day.ordinalize} %Y") %></p>
+	<p><%= @student.email %></p>
+	<p><%= @student.dob unless @student.dob.blank?%></p>
+	<p><%= @student.gender == "0" ? "Male" : "Female" %></p>
+	<p><%= @student.biography unless @student.biography.blank?%></p>
+	<% if currentStudent == @student || adminSignedIn?%>
+		<p><%= link_to "Edit Account", edit_student_path(@student) %></p>
+		<p><%= link_to "Delete Account", @student, method: :delete,
+					data: {confirm: "Are you sure?"} %></p>
+	<% end %>
+</div>
 
-<h4>All Topics</h4>
-<p>You have watched <%= @percentage %>% (<%= @numViews %> of <%= @numVideos %>) of the videos.</p>
-<ul>Easy Quizzes
-	<li>
+<div class="main">
 
+	<div id="tutors" class="profileBox">
+		<h4>Hired Tutors</h4>
+		<% @student.tutors.each do |tutor| %>
+			<%= gravatar(tutor, size: 25) %><%= link_to tutor.displayName, tutor_path(tutor) %>
+		<% end %>
+	</div>
 
-<% if currentStudent == @student || adminSignedIn?%>
-	<p><%= link_to "Edit Account", edit_student_path%></p>
-	<p><%= link_to "Delete Account", @student, method: :delete,
-				data: {confirm: "Are you sure?"} %></p>
-<% end %>
+	<div id="sessions" class="profileBox">
+		<h4>Upcoming Sessions</h4>
+		<% @student.sessions.each do |session| %>
+			<%= link_to "session", session_path(session) %>
+		<% end %>
+	</div>
+
+	<div id="videos" class="profileBox">
+		<h4>All Topics</h4>
+		<p>You have watched <%= @percentage %>% (<%= @numViews %> of <%= @numVideos %>) of the videos.</p>
+	</div>
+
+	<div id="quizzes" class="profileBox">
+		<h4>All Quizzes</h4>
+	</div>
+
+</div>

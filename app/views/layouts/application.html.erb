@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	  <title><%= fullTitle(yield(:title))%></title>
-	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	  <%= csrf_meta_tags %>
-	</head>
-	<body>
-
-		<div id="navigation">
+    <head>
+        <title><%= fullTitle(yield(:title))%></title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <div id="navigation">
 			<%= render 'layouts/header' %>
 		</div>
 
-		<div id="pageBox">
+        <div id="pageBox">
 			<% unless current_page?(controller: 'static_pages', action: "home") %>
 				<div class="pagebar">
 					<%= fullPageBar(yield(:pageBar)) %>
 				</div>
 			<% end %>
 			<div class="content">
-
-				<% flash.each do |key, value|%>
+                <% flash.each do |key, value|%>
 					<p><%= value%></p>
 				<% end%>
+                <%= yield %>
 
-				<%= yield %>
-			</div>
+            </div>
 			<p class="footer">
 				<%= link_to "About", about_path%> | <%= link_to "Links", links_path%>
 			</p>

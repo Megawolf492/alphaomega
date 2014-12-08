@@ -3,6 +3,8 @@ class Student < ActiveRecord::Base
 	has_many :viewings, dependent: :destroy
 	has_many :grades, dependent: :destroy
 	has_many :videos, through: :viewings, dependent: :destroy
+	has_many :hirings
+	has_many :tutors, through: :hirings
 	has_and_belongs_to_many :sessions
 
 	validates :displayName, presence: true, length: {maximum: 40}
@@ -10,7 +12,7 @@ class Student < ActiveRecord::Base
 	validates :email, presence: true, format: {with: VALID_EMAIL_REGEX},
 				uniqueness: {case_sensitive: false}
 	has_secure_password
-	validates :password, length: {minimum: 6}
+	validates :password, length: {minimum: 6}, allow_blank: true
 
 	def Student.newRememberToken
 		SecureRandom.urlsafe_base64

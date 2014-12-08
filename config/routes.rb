@@ -4,11 +4,13 @@ Rails.application.routes.draw do
     get :resume, on: :member
   end
   resources :admins
-  resources :departments 
+  resources :departments
   resources :subjects
-  
+
   resources :topics
   resources :sessions
+  resources :hirings, only: [:create, :destroy]
+
   resources :videos, only: :show
   resources :worksheets, only: :show
   resources :quizzes, only: [:show, :edit, :update] do

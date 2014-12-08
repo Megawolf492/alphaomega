@@ -15,7 +15,7 @@ class AdminsController < ApplicationController
 		else
 			render 'new'
 		end
-	end	
+	end
 
 	def index
 		@admins = Admin.all
@@ -23,6 +23,9 @@ class AdminsController < ApplicationController
 
 	def show
 		@admin = Admin.find(params[:id])
+		if adminSignedIn? && currentAdmin == @admin
+			redirect_to root_path
+		end
 		@certifications = Certification.where(status: 1)
 	end
 

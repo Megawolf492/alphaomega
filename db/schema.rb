@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617134710) do
+ActiveRecord::Schema.define(version: 20141206235341) do
 
   create_table "admins", force: true do |t|
     t.string   "displayName"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 20140617134710) do
 
   add_index "grades", ["quiz_id"], name: "index_grades_on_quiz_id"
   add_index "grades", ["student_id"], name: "index_grades_on_student_id"
+
+  create_table "hirings", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "tutor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", force: true do |t|
     t.text     "text"

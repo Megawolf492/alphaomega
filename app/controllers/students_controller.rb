@@ -10,6 +10,9 @@ class StudentsController < ApplicationController
 
 	def show
 		@student = Student.find(params[:id])
+		if studentSignedIn? && currentStudent == @student
+			redirect_to root_path
+		end
 		@numVideos = Video.count
 		@numViews = Viewing.where(student_id: @student.id).count
 		@percentage = (@numViews.to_f / @numVideos) * 100

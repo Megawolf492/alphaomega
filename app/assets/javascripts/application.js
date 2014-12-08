@@ -21,5 +21,3 @@ var qReady = function(){
 $(document).on('nested:fieldAdded:videos', vReady);
 $(document).on('nested:fieldAdded:worksheets', wReady);
 $(document).on('nested:fieldAdded:quizzes', qReady);
-
-

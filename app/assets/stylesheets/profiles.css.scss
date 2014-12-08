@@ -1,6 +1,6 @@
 .bio
 {
-    width: 300px;
+    width: 20%;
     float: left;
     .name
     {
@@ -14,8 +14,24 @@
 
 .main
 {
-    margin-left: 20px;
+    //margin-left: 20px;
     display: inline;
-    width: 400px;
+    width: 80%;
     float: right;
+    .profileBox
+    {
+        border: 1px solid #777;
+        border-radius: 8px;
+        margin: 0;
+    }
+    &>div:nth-child(odd)
+    {
+        width: 50%;
+        float: left;
+    }
+    &>div:nth-child(even)
+    {
+        width: 49%;
+        float: right;
+    }
 }
