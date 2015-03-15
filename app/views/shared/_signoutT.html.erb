@@ -1,7 +1,0 @@
-<%= link_to currentTutor.displayName, currentTutor%>
-<ul>
-	<li><%= link_to "Account", tutor_path(currentTutor)%></li>
-	<li><%= link_to "Settings", edit_tutor_path(currentTutor)%></li>
-	<br/>
-	<li style="width: 70px;"><%= link_to "Sign Out", signout_path, method: :post, data: {remote: true}%></li>
-</ul>

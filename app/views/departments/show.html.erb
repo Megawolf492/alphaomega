@@ -5,7 +5,7 @@
 <p><%= @department.name %></p>
 
 <% @subjects.each do |subject| %>
-	<p><%= link_to subject.name, subject_path %></p>
+	<p><%= link_to subject.name, subject_path(subject) %></p>
 <% end %>
 
 <% if adminSignedIn?%>

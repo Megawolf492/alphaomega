@@ -3,7 +3,7 @@
 	<%= link_to "Admins", admins_path %> > <%= link_to @admin.displayName, admin_path(@admin) %>
 <% end %>
 
-<div class="bio">
+<div class="columns large-2 bio">
 	<p class="name"><%= @admin.displayName %></p>
 	<p><%= @admin.realName unless @admin.realName.blank?%></p>
 	<br/>
@@ -12,14 +12,23 @@
 	<p><%= @admin.dob unless @admin.dob.blank?%></p>
 	<p><%= @admin.gender == "0" ? "Male" : "Female" %></p>
 	<p><%= @admin.biography unless @admin.biography.blank?%></p>
-	<p><%= link_to "Delete Account", @admin, method: :delete,
-				data: {confirm: "Are you sure?"} %></p>
+	<% if currentAdmin == @admin %>
+		<p><%= link_to "Delete Account", @admin, method: :delete,
+					data: {confirm: "Are you sure?"} %></p>
+	<% end %>
 </div>
 
-<div class="main">
+<div class="columns large-10 main">
 	<% if currentAdmin == @admin %>
+		<h4>Pending Certifications </h4>
 		<% @certifications.each do |cert| %>
-			<p><%= cert.tutor.displayName %>(<%= cert.tutor.realName %>)		<%= cert.subject.name %>    <%= link_to "Resume", resume_tutor_path(cert.tutor), target: "_blank" %>		<%= link_to "Certify?", certify_certification_path(cert),data: {confirm: "Are you sure?"} %></p>
+			<% if cert.tutor.fileName.present? %>
+				<p><%= cert.tutor.displayName %>(<%= cert.tutor.realName %>)
+					<%= cert.subject.name %>
+					<%= link_to "Resume", resume_tutor_path(cert.tutor), target: "_blank" %>
+					<%= link_to "Certify?", certify_certification_path(cert), data: {confirm: "Are you sure?"} %>
+				</p>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   match '/about', to: 'static_pages#about', via: 'get'
   match '/links', to: 'static_pages#links', via: 'get'
-  match '/signup', to: 'students#new', via: 'get'
+  match '/signup', to: 'static_pages#signup', via: 'get'
   match '/signin', to: 'students#signin', via: 'post'
   match '/signout', to: 'students#signout',  via: 'post'
 

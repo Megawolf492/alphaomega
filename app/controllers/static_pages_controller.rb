@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
 		elsif tutorSignedIn?
 			@tutor = currentTutor
 			@certs = Certification.where(tutor_id: @tutor.id)
+			@session = Session.new
 			render "tutors/show"
 		elsif studentSignedIn?
 			@student = currentStudent
@@ -19,6 +20,11 @@ class StaticPagesController < ApplicationController
 			@quizzes = Quiz.all
 			render "students/show"
 		end
+	end
+
+	def signup
+		@tutor = Tutor.new
+		@student = Student.new
 	end
 
 	def about

@@ -14,7 +14,7 @@ class DepartmentsController < ApplicationController
 		else
 			render 'new'
 		end
-	end	
+	end
 
 	def index
 		@departments = Department.all
@@ -32,7 +32,7 @@ class DepartmentsController < ApplicationController
 	def update
 		@department = Department.find(params[:id])
 		if @department.update_attributes(departmentParams)
-			flash[:success] = "Profile Updated"
+			flash[:success] = "Department Updated"
 			redirect_to @department
 		else
 			render 'edit'

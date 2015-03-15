@@ -1,10 +1,8 @@
 .bio
 {
-    width: 20%;
-    float: left;
     .name
     {
-        font-size: 30px;
+        font-size: 25px;
     }
     .privilege
     {
@@ -14,24 +12,12 @@
 
 .main
 {
-    //margin-left: 20px;
-    display: inline;
-    width: 80%;
-    float: right;
+
     .profileBox
     {
+        margin-top: 30px;
         border: 1px solid #777;
         border-radius: 8px;
-        margin: 0;
-    }
-    &>div:nth-child(odd)
-    {
-        width: 50%;
-        float: left;
-    }
-    &>div:nth-child(even)
-    {
-        width: 49%;
-        float: right;
+        padding: 10px;
     }
 }

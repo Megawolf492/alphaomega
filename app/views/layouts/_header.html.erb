@@ -7,15 +7,46 @@
 	</li>
 	<li id="signin">
 		<% if studentSignedIn? %>
-			<%= render 'shared/signoutS' %>
+			<%= link_to currentStudent.displayName, currentStudent%>
+			<ul>
+				<li><%= link_to "Account", student_path(currentStudent)%></li>
+				<li><%= link_to "Settings", edit_student_path(currentStudent)%></li>
+				<br/>
+				<li><%= link_to "Sign Out", signout_path, method: :post%></li>
+			</ul>
 		<% else %>
 			<% if tutorSignedIn? %>
-				<%= render 'shared/signoutT' %>
+				<%= link_to currentTutor.displayName, currentTutor%>
+				<ul>
+					<li><%= link_to "Account", tutor_path(currentTutor)%></li>
+					<li><%= link_to "Settings", edit_tutor_path(currentTutor)%></li>
+					<br/>
+					<li><%= link_to "Sign Out", signout_path, method: :post%></li>
+				</ul>
 			<% else %>
 				<% if adminSignedIn? %>
-					<%= render 'shared/signoutA' %>
+					<%= link_to currentAdmin.displayName, currentAdmin%>
+					<ul>
+						<li><%= link_to "Account", admin_path(currentAdmin)%></li>
+						<li><%= link_to "Settings", edit_admin_path(currentAdmin)%></li>
+
+						<li><%= link_to "Sign Out", signout_path, method: :post %></li>
+					</ul>
 				<% else %>
-					<%= render 'shared/signin'%>
+					Sign In | <%= link_to "Register", signup_path %>
+					<ul>
+						<%= form_for(:student, url: signin_path) do |f| %>
+						<li>
+							<%= f.text_field :email, size: 10, value: "Email", onfocus: "this.value=''", autocomplete: :off%>
+						</li>
+						<li>
+							<%= f.text_field :password, size: 10, value: "Password", onfocus: "this.value=''; this.type='password'"%>
+						</li>
+						<li>
+							<%= f.submit "Sign In" %>
+						</li>
+						<% end %>
+					</ul>
 				<% end %>
 			<% end %>
 		<% end %>

@@ -93,9 +93,10 @@ ActiveRecord::Schema.define(version: 20141206235341) do
   create_table "sessions", force: true do |t|
     t.datetime "time"
     t.string   "location"
-    t.integer  "duration"
-    t.integer  "price"
+    t.decimal  "duration"
+    t.decimal  "price"
     t.text     "tutorNote"
+    t.integer  "tutor_id"
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"

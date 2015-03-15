@@ -1,21 +1,23 @@
-<p><%= f.datetime_select :time %></p>
+<div class="row">
+    <div class="columns large-6">
+        <%= f.label "Date & Time" %><%= f.text_field :time, class: "datetimepicker" %>
+        <%= f.label :duration%><%= f.text_field :duration, style: "width: 50%; display: inline;" %> hour(s)
+        <%= f.label :location%><%= f.text_area :location%>
+        <%= f.label "Note"%><%= f.text_area :tutorNote%>
+    </div>
+    <div class="columns large-6">
+        <%= f.select(:subjects, @tutor.certifications.all.collect {|c| [c.subject.name, c.subject.id]}, {}, {class: "select2 multiple", multiple: true}) %>
+        <%= f.select(:students, @tutor.students.all.collect {|c| [c.displayName, c.id]}, {}, {class: "select2 multiple", multiple: true}) %>
+        <% if currentTutor.certifications.count == 1 %>
+            <%= f.label :price%><%= f.text_field :price, value: currentTutor.certifications.first.wage, readonly: true %>
+        <% else %>
+            <%= f.label :price%><%= f.text_field :price%>
+        <% end %>
+        <div><%= f.radio_button :status, 0 %><%= f.label "Upcoming" %></div>
+        <div><%= f.radio_button :status, 1 %><%= f.label "Sucessful" %></div>
+        <div><%= f.radio_button :status, 2 %><%= f.label "Unsucessful" %></div>
+    </div>
 
 
-<p><%= f.select(:subjects, @certs.all.collect {|c| [c.subject.name, c.subject.id]}) %></p>
-<p><%= f.select(:students, @students.all.collect {|c| [c.displayName, c.id]}) %></p>
-
-<p><%= f.label :location%>
-<%= f.text_field :location%></p>
-
-<p><%= f.label :duration%>
-<%= f.text_field :duration%></p>
-
-<p><%= f.label :price%>
-<%= f.text_field :price%></p>
-
-<p><%= f.label "Note"%>
-<%= f.text_area :tutorNote%></p>
-
-<p><%= f.radio_button :status, 0 %>Upcoming</p>
-<p><%= f.radio_button :status, 1 %>Sucessful</p>
-<p><%= f.radio_button :status, 2 %>Unsucessful</p>
+    <%= f.hidden_field :tutor_id, value: @tutor.id %>
+</div>

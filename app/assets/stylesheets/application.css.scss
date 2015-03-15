@@ -12,6 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+ *= require magnific-popup
+ *= require jquery.datetimepicker
+ *= require select2
  */
 
 *
@@ -48,7 +52,7 @@ body
     }
     a:hover
     {
-        color: grey;
+        color: gray;
     }
     ul
     {
@@ -60,12 +64,12 @@ body
         li
         {
             float: left;
-            padding: 0 5px;
+            padding: 5px 5px 0 5px;
 
             display: block;
             &:hover > ul
             {
-                display: table;
+                display: inline-block;
             }
             ul
             {
@@ -74,12 +78,13 @@ body
                 margin: 0 0 0 -2px;
                 display: none;
                 background: #404040;
-                position: relative;
+                position: absolute;
                 border-radius: 0 0 5px 5px;
                 li
                 {
                     float: none;
                     position: relative;
+                    margin-top: 5px;
                     ul
                     {
                         position: absolute;
@@ -99,27 +104,40 @@ body
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    width: 90%;
+    width: 80%;
     background-color: white;
-    min-height: 720px;
+    min-height: 100%;
     box-shadow: 0px 4px 15px 2px rgba(0,0,0,0.4);
     border-radius: 0 0 10px 10px;
+    position: relative;
     .pagebar
     {
         margin-left: 20px;
     }
     .content
     {
-        margin-left: auto;
-        margin-right: auto;
-        width: 95%;
+        max-width: 100%;
     }
     .footer
     {
         font-size: 12px;
-        bottom: 0;
-        position: absolute;
-        padding-bottom: 25px;
         margin-left: 20px;
     }
+}
+
+.popup
+{
+    position: relative;
+    background: white;
+    width: auto;
+    max-width: 550px;
+    margin: auto;
+    color: black;
+    padding: 20px;
+}
+
+.select2.multiple
+{
+    width: 100%;
+    margin: 10px 0;
 }

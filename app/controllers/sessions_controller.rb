@@ -4,13 +4,14 @@ class SessionsController < ApplicationController
 
 	def new
 		@session = Session.new
-		@certs = Certification.where(tutor: currentTutor, status: 2)
+		@tutor = currentTutor
+		@certs = Certification.where(tutor: @tutor, status: 2)
 		@students = currentTutor.students
 	end
 
 	def create
 		@session = Session.new(sessionParams)
-		if @session.save
+		if @session.save!
 			flash[:success] = "Session Created!"
 			redirect_to root_path
 		else
@@ -24,7 +25,8 @@ class SessionsController < ApplicationController
 
 	def edit
 		@session = Session.find(params[:id])
-		@certs = Certification.where(tutor: currentTutor, status: 2)
+		@tutor = currentTutor
+		@certs = Certification.where(tutor: @tutor, status: 2)
 		@students = currentTutor.students
 	end
 
@@ -48,6 +50,6 @@ class SessionsController < ApplicationController
 
 		def sessionParams
 			params.require(:session).permit(:time, :location, :duration,
-				:price, :tutorNote, :subjects, :students, :status)
+				:price, :tutorNote, :subjects, :students, :status, :tutor_id)
 		end
 end

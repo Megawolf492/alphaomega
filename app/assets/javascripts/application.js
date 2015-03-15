@@ -4,20 +4,24 @@
 //= require jquery.turbolinks
 //= require_tree .
 //= require jquery_nested_form
+//= require foundation
+//= require magnific-popup
+//= require jquery.datetimepicker
+//= require select2
+//= require ./plugins/rails.validations
 
-var vReady = function(){
+
+$(document).on('nested:fieldAdded:videos', function()
+{
 	$(".fields").find('.vid').last().children().val("New Video");
-};
-
-var wReady = function(){
+});
+$(document).on('nested:fieldAdded:worksheets', function()
+{
 	$(".fields").find('.pdf').last().children().val("New Worksheet");
-};
-
-var qReady = function(){
+});
+$(document).on('nested:fieldAdded:quizzes', function()
+{
 	$(".fields").find('.quiz').last().children().val("New Quiz");
-};
+});
 
-
-$(document).on('nested:fieldAdded:videos', vReady);
-$(document).on('nested:fieldAdded:worksheets', wReady);
-$(document).on('nested:fieldAdded:quizzes', qReady);
+$(document).foundation();

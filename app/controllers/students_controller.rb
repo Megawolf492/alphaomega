@@ -84,9 +84,7 @@ class StudentsController < ApplicationController
 	def signout
 		#works for students tutors and admins
 		signOutStudent
-		respond_to do |format|
-			format.js {render action: "signoutAll"}
-		end
+		redirect_to root_path
 	end
 
 	private

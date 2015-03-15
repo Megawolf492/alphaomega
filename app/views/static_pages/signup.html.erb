@@ -1,0 +1,41 @@
+<% provide(:title, 'Sign Up')%>
+<% content_for :pageBar do %>
+     <%= link_to "Sign Up", signup_path %>
+<% end %>
+
+<div class="rows">
+    <div class="columns large-6">
+        <h4>Students</h4>
+        <p>Info about students here!</p>
+        <%= link_to "#new_students", class: "new_students" do %>
+            <button>Sign Up!</button>
+        <% end %>
+    </div>
+    <div class="columns large-6">
+        <h4>Tutors</h4>
+        <p>Info about tutors here!</p>
+        <%= link_to "#new_tutors", class: "new_tutors" do %>
+            <button>Sign Up!</button>
+        <% end %>
+    </div>
+</div>
+
+<div id="new_students" class="popup mfp-hide">
+    <%= form_for @student, validate: true do |f| %>
+        <h3>Create Student</h3>
+        <%= render 'shared/errors', object: f.object%>
+        <%= render 'shared/newForm', f: f %>
+
+        <p><%= f.submit "Create Student" %></p>
+    <% end %>
+</div>
+
+<div id="new_tutors" class="popup mfp-hide mfp-inline">
+    <%= form_for @tutor, validate: true do |f| %>
+        <h3>Create Tutor</h3>
+        <%= render 'shared/errors', object: f.object%>
+        <%= render 'shared/newForm', f: f %>
+
+        <p><%= f.submit "Create Tutor" %></p>
+    <% end %>
+</div>

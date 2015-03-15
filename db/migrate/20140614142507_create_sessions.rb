@@ -3,10 +3,11 @@ class CreateSessions < ActiveRecord::Migration
     create_table :sessions do |t|
       t.timestamp :time
       t.string :location
-      t.integer :duration
-      t.integer :price
+      t.decimal :duration
+      t.decimal :price
       t.text :tutorNote
-      t.integer :status # 0 = planned, 1 = successful, 2 = unsuccessful
+      t.integer :tutor_id
+      t.integer :status # 0 = upcoming, 1 = successful, 2 = unsuccessful
 
       t.timestamps
     end

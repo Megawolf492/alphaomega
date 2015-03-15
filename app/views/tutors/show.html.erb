@@ -3,7 +3,7 @@
 	<%= link_to "Tutors", tutors_path %> > <%= link_to @tutor.displayName, tutor_path(@tutor) %>
 <% end %>
 
-<div class="bio">
+<div class="columns large-2 bio">
 	<p class="name"><%= @tutor.displayName %></p>
 	<p><%= @tutor.realName unless @tutor.realName.blank?%></p>
 	<br/>
@@ -12,31 +12,91 @@
 	<p><%= @tutor.dob unless @tutor.dob.blank?%></p>
 	<p><%= @tutor.gender == "0" ? "Male" : "Female" %></p>
 	<p><%= @tutor.biography unless @tutor.biography.blank?%></p>
-	<p><%= link_to "Delete Account", @tutor, method: :delete,
-				data: {confirm: "Are you sure?"} %></p>
-</div>
-
-<div class="main">
-	<h4>Certifications</h4>
-
-	<% @certs.each do |cert| %>
-		<p><%= cert.subject.name %>    <%= cert.grade %>    <%= cert.status %></p>
-	<% end %>
-
-	<% if studentSignedIn?%>
-		<% if @hired.nil? %>
-			<%= form_for Hiring.new do |h| %>
-				<%= h.hidden_field :student_id, value: currentStudent.id %>
-				<%= h.hidden_field :tutor_id, value: @tutor.id %>
-				<%= h.submit "Hire Tutor" %>
-			<% end %>
-		<% else %>
-			<%= link_to "Fire Tutor", hiring_path(@hired), method: "delete", data: {confirm: "Are you sure?"} %>
-		<% end %>
-	<% end %>
-
 	<% if currentTutor == @tutor %>
 		<p><%= link_to "Delete Account", @tutor, method: :delete,
 					data: {confirm: "Are you sure?"} %></p>
+	<% end %>
+</div>
+
+<div class="columns large-10 main">
+	<div id="certifications" class="profileBox">
+		<h4>Certifications</h4>
+
+		<% @certs.each do |cert| %>
+			<p>
+				<%= cert.subject.name %>(<%= cert.grade %>)
+				<% if cert.status == 2 %>
+					Confirmed
+				<% elsif cert.status == 1 && @tutor.fileName.nil? %>
+					You passed the certification test, but you need to upload a resume to be confirmed!
+				<% elsif cert.status == 1 %>
+					Awaiting confirmation
+				<% else %>
+					You did not pass the test
+				<% end %>
+			</p>
+		<% end %>
+
+		<% if studentSignedIn?%>
+			<% if @hired.nil? %>
+				<%= form_for Hiring.new do |h| %>
+					<%= h.hidden_field :student_id, value: currentStudent.id %>
+					<%= h.hidden_field :tutor_id, value: @tutor.id %>
+					<%= h.submit "Hire Tutor" %>
+				<% end %>
+			<% else %>
+				<%= link_to "Fire Tutor", hiring_path(@hired), method: "delete", data: {confirm: "Are you sure?"} %>
+			<% end %>
+		<% end %>
+	</div>
+
+	<div id="sessions" class="profileBox">
+		<h4>Upcoming Sessions</h4>
+		<table>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Student(s)</th>
+					<th>Subject(s)</th>
+					<th>Location</th>
+					<th>Price</th>
+					<th>Tutor's Note</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @tutor.sessions.upcoming.each do |session| %>
+					<tr>
+						<td><%= session.time %></td>
+						<td><%= session.time %></td>
+						<td>
+							<% session.students.each do |student| %>
+								<%= student.displayName %>
+							<% end %>
+						</td>
+						<td>
+							<% session.subjects.each do |sub| %>
+								<%= sub.name %>
+							<% end %>
+						</td>
+						<td><%= session.location %></td>
+						<td><%= session.price %></td>
+						<td><%= session.tutorNote %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= link_to "New Session", "#new_model", class: "new_model" %>
+	</div>
+
+</div>
+
+<div id="new_model" class="popup mfp-hide">
+	<%= form_for @session, validate: true do |f| %>
+		<h3>Create Session</h3>
+		<%= render 'shared/errors', object: f.object%>
+		<%= render 'sessions/form', f: f %>
+
+		<p><%= f.submit "Create Session" %></p>
 	<% end %>
 </div>
